@@ -15,8 +15,9 @@ module DailyMenusHelper
   end
   
   def total_sold(menu)
-    "#{menu.orders.includes(:food_items).pluck(:price).sum}$"
+    number_to_currency(menu.orders.includes(:food_items).pluck(:price).sum)
   end
+  
   def most_popular_item(menu, course)
     OrderItem.includes(:food_item).where(food_item: {daily_menu: menu, course: course}).group(:food_item)
                                                                        .count
