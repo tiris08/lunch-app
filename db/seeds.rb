@@ -39,12 +39,16 @@
 # end
 
 # # Users Orders
-# 20.times do |number|
-#   user = User.find_by(id: number + 2)
+# 18.times do |number|
+#   user = User.find(number + 2)
 #   20.times do |n|
-#     menu = DailyMenu.find_by(id: 43 - n)
-#     menu.food_items.first(3).each do |item|
-#       OrderItem.create(user_id: user.id, food_item_id: item.id)
+#     menu = DailyMenu.find(45 - n)
+#     order = Order.new(user_id: user.id, daily_menu_id: menu.id)
+#     3.times do |num|
+#       food_item = menu.food_items[num] 
+#       order.order_items.build
+#       order.order_items[num].food_item_id = food_item.id
+#       order.save
 #     end
 #   end
 # end

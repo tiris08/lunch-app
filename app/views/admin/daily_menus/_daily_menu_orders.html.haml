@@ -5,18 +5,16 @@
     %thead
       %tr 
         %th.center.aligned User name 
-        %th Menu items (first / main / drink)
+        %th Menu items
         %th Total cost
       %tbody
-        - @users_order_items.each_pair do |user, order_items|
+        - @daily_menu.orders.each do |order|
           %tr
             %td.selectable.center.aligned
-              = link_to "#{user.name}", admin_user_path(user)
+              = link_to "#{order.user.name}", admin_user_path(order.user)
             %td 
-              - price = 0
-              - order_items.each do |order_item| 
-                - price += order_item.food_item.price
-                = "#{order_item.food_item.name} / "
+              - order.food_items.each_with_index do |item, index| 
+                = index == order.food_items.size - 1 ? "#{item.name}." : "#{item.name}," 
             %td  
-              = price   
+              = order.food_items.pluck(:price).sum
               

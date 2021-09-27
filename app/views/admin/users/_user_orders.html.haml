@@ -2,18 +2,16 @@
   %thead
     %tr 
       %th.center.aligned Order date 
-      %th Menu items (first / main / drink)
+      %th Menu items 
       %th Total cost
     %tbody
-      - @user_order_items.each_pair do |menu, order_items|
+      - @user.orders.each do |order|
         %tr
           %td.selectable.center.aligned
-            = link_to "#{menu.created_at.strftime("%d %b %Y")}", admin_daily_menu_path(menu)
+            = link_to "#{order.daily_menu.created_at.strftime("%d %b %Y")}", admin_daily_menu_path(order.daily_menu)
           %td 
-            - price = 0
-            - order_items.each do |order_item| 
-              - price += order_item.food_item.price
-              = "#{order_item.food_item.name} / "
+            - order.food_items.each_with_index do |item, index| 
+              = index == order.food_items.size - 1 ? "#{item.name}." : "#{item.name},"
           %td  
-            = price
+            = order.food_items.pluck(:price).sum
             

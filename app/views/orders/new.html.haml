@@ -1,0 +1,14 @@
+.ui.container
+  .ui.two.column.grid
+    .column
+      %h1.ui.center.aligned.header Make your order here:
+      = simple_form_for @order, url: daily_menu_orders_path, html: {class: "ui form"} do |f|
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :daily_menu_id, value: params[:daily_menu_id]
+        .ui.piled.segment
+          .ui.three.column.grid 
+            = render 'food_items_fields', f: f
+          %br/
+          = f.submit "Order", class: "ui fluid primary button",  data: { confirm: "Are you sure you?" }
+    .column 
+      = render 'shared/menu_list', menu: DailyMenu.find(params[:daily_menu_id])

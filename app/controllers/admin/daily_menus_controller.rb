@@ -5,7 +5,6 @@ class Admin::DailyMenusController < Admin::BaseController
 
   def show
     @daily_menu = DailyMenu.find(params[:id])
-    @users_order_items = OrderItem.includes(food_item: :daily_menu).where(food_item: {daily_menu: @daily_menu}).group_by(&:user)
   end
 
   def new
@@ -31,7 +30,7 @@ class Admin::DailyMenusController < Admin::BaseController
     if @daily_menu.update(daily_menu_params)
       redirect_to admin_daily_menu_path(@daily_menu), notice: "Menu updated!"
     else
-      render 'edit'
+      render :edit
     end
   end
 

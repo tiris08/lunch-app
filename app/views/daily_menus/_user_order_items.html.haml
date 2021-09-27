@@ -1,0 +1,25 @@
+%h1.ui.center.aligned.header Your order
+.ui.piled.segment
+  - if @daily_menu.created_at.today?
+    = link_to "Edit", edit_daily_menu_order_path(@daily_menu, @user_order), class: "ui blue right ribbon label"
+  %table.ui.very.basic.celled.table
+    %thead
+      %tr
+        %th Order items
+        %th Price
+    %tbody
+      - @user_order&.food_items&.each do |item|
+        %tr
+          %td
+            %h4.ui.header
+              = item.name
+              .sub.header
+                = item.course.humanize
+          %td
+            = item.price
+    %tfoot 
+      %tr 
+        %th.right.aligned Total price
+        %th
+          = @user_order_cost
+          

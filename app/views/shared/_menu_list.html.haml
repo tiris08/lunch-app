@@ -1,5 +1,5 @@
 %h1.ui.center.aligned.header
-  = "Menu list on #{@daily_menu.created_at.strftime("%A %d %b %Y")}"
+  = "Menu list on #{menu.created_at.strftime("%A %d %b %Y")}"
 .ui.piled.segment
   %table.ui.very.basic.table
     %thead
@@ -10,13 +10,13 @@
             = link_to "Edit", edit_admin_daily_menu_path(@daily_menu)
         %th Price
     %tbody
-      - @daily_menu.food_items.order(:course).each do |item|
+      - menu.food_items.order(:course).each do |item|
         %tr
           %td
             %h4.ui.header
               = item.name
               .sub.header
-                = item.course.gsub("_", " ").capitalize
+                = item.course.humanize
           %td
             = item.price
             
