@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      redirect_to daily_menu_path(DailyMenu.find(params[:daily_menu_id])), notice: "Your order was successfully created"
+      redirect_to daily_menu_path(@order.daily_menu), notice: "Your order was successfully created"
     else
       @course = ["First", "Main", "Drink"]
       flash.now[:alert] = "You have to select all three courses"
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      redirect_to daily_menu_path(DailyMenu.find(params[:daily_menu_id])), notice: "Your order has been succesfully updated!"
+      redirect_to daily_menu_path(@order.daily_menu), notice: "Your order has been succesfully updated!"
     else
       @course = ["First", "Main", "Drink"]
       flash.now[:alert] = "You have to select all three courses"
@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
   end
 
   def verify_is_not_admin!
-    if current_user && current_user.is_admin?
+    if current_user&.is_admin?
       redirect_to admin_root_path, alert: "You don't belong there"
     end
   end
