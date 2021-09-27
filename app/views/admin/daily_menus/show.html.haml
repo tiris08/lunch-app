@@ -1,7 +1,16 @@
 .ui.container
-  .ui.one.column.grid
-    .column
-      = render 'shared/menu_list', menu: @daily_menu
-    .column
-      = render 'daily_menu_orders'
+  .ui.tabular.menu
+    .active.item{"data-tab" => "day-info"} Day info
+    .item{"data-tab" => "menu-list"} Menu list
+    .item{"data-tab" => "users-orders"} Users orders
+    .right.aligned.item
+      = @daily_menu.created_at.strftime("%A %d %b %Y")
+  .ui.active.tab{"data-tab" => "day-info"}
+    = render 'day_stats'
+  .ui.tab{"data-tab" => "menu-list"}
+    = render 'shared/menu_list', menu: @daily_menu
+  .ui.tab{"data-tab" => "users-orders"}
+    = render 'daily_menu_orders'
+
+          
       

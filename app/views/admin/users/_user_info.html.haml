@@ -1,22 +1,24 @@
-%table.ui.very.basic.large.table
-  %tbody
-    %tr 
-      %td Name:
-      %td
-        = @user.name
-    %tr
-      %td Email:
-      %td
-        = @user.email
-    %tr 
-      %td Joined in 
-      %td 
-        = @user.created_at.strftime("%d %b %Y")
-    %tr 
-      %td Total amount of orders:
-      %td 
-        = @user_total_orders
-    %tr 
-      %td Total spent:
-      %td  
-        = "#{@user_total_spendings}$" 
+%h1.ui.center.aligned.header User info
+.ui.segment
+  %table.ui.very.basic.large.table
+    %tbody
+      %tr 
+        %td Name:
+        %td
+          = @user.name
+      %tr
+        %td Email:
+        %td
+          = @user.email
+      %tr 
+        %td Joined in 
+        %td 
+          = @user.created_at.strftime("%d %b %Y")
+      %tr 
+        %td Total amount of orders:
+        %td 
+          = @user_total_orders
+      %tr 
+        %td Total spent:
+        %td  
+          = "#{@user_total_spendings}$" 

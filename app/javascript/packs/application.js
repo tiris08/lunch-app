@@ -17,6 +17,7 @@ import '@doabit/semantic-ui-sass'
 
 $(document).on('turbolinks:load', function() {
   $('.ui.radio.checkbox').checkbox();
+  $('.tabular.menu .item').tab();
   $('.ui.container.positive.center_flash.message').transition('fade', '10s');
   $('.message .close').on('click', function() {
     $(this).closest('.message').transition('fade');

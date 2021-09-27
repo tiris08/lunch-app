@@ -1,16 +1,14 @@
-%h1.ui.center.aligned.header
-  Users Orders
-.ui.piled.segment
+.ui.segment
   %table.ui.very.basic.table
     %thead
       %tr 
-        %th.center.aligned User name 
+        %th User name 
         %th Menu items
         %th Total cost
       %tbody
         - @daily_menu.orders.each do |order|
           %tr
-            %td.selectable.center.aligned
+            %td 
               = link_to "#{order.user.name}", admin_user_path(order.user)
             %td 
               - order.food_items.each_with_index do |item, index| 

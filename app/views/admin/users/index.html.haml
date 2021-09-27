@@ -1,13 +1,14 @@
 .ui.container
   .ui.one.column.grid
     .column
-      .ui.segment.piled
+      .ui.segment
         %table.ui.very.basic.celled.table
           %thead
             %tr
               %th Name
               %th Email
               %th Registered at
+              %th Last order
           %tbody
             - @users.each do |user|
               %tr
@@ -17,4 +18,9 @@
                   = user.email
                 %td
                   = user.created_at.strftime("%d %b %Y")
+                %td
+                  - if user.orders.last.nil? 
+                    no orders yet
+                  - else
+                    = user.orders.last&.created_at&.strftime("%d %b %Y")
               

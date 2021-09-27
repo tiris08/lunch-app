@@ -1,6 +1,7 @@
-%h1.ui.center.aligned.header
-  = "Menu list on #{menu.created_at.strftime("%A %d %b %Y")}"
-.ui.piled.segment
+- unless current_user.is_admin?
+  %h1.ui.center.aligned.header
+    = "Menu list on #{menu.created_at.strftime("%A %d %b %Y")}"
+.ui.segment
   %table.ui.very.basic.table
     %thead
       %tr
