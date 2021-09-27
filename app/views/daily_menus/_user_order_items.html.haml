@@ -14,7 +14,7 @@
             %h4.ui.header
               = item.name
               .sub.header
-                = humanize_menu_course(item)
+                = item.course.humanize
           %td
             = item.price
     %tfoot 

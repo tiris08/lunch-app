@@ -8,11 +8,4 @@ module DailyMenusHelper
       link_to 'History', menu, class: "ui bottom attached button" 
     end
   end
-
-
-  def humanize_menu_course(item)
-    item.course.gsub("_", " ").capitalize
-  end
-  
-  
 end
