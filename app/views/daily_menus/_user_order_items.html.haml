@@ -14,7 +14,7 @@
             %h4.ui.header
               = item.name
               .sub.header
-                = item.course.gsub("_", " ").capitalize
+                = humanize_menu_course(item)
           %td
             = item.price
     %tfoot 

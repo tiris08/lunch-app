@@ -10,7 +10,7 @@ module DailyMenusHelper
   end
 
 
-  def menu_course(item)
+  def humanize_menu_course(item)
     item.course.gsub("_", " ").capitalize
   end
   
