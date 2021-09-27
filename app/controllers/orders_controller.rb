@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
   end
 
   def verify_is_not_admin!
-    if current_user && current_user.is_admin?
+    if current_user&.is_admin?
       redirect_to admin_root_path, alert: "You don't belong there"
     end
   end
