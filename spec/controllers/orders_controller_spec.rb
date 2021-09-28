@@ -144,16 +144,20 @@ RSpec.describe OrdersController, type: :controller do
       
       context "without order_items" do
         
-        xit "renders :new" do 
+        it "renders :new" do 
           post :create, params: { daily_menu_id: daily_menu, 
-                                  order: {daily_menu_id: daily_menu, user_id: user}}
+                                  order: {user_id: user, order_items_attributes: attributes_for_list(:food_item, 
+                                                                                                      3, 
+                                                                                                      food_item_id: "")}}
           expect(response).to render_template(:new)
         end
         
-        xit "doesn`t create new order in db" do
+        it "doesn`t create new order in db" do
           expect{ 
             post :create, params: { daily_menu_id: daily_menu, 
-                                    order: {daily_menu_id: daily_menu, user_id: user}}
+                                    order: {user_id: user, order_items_attributes: attributes_for_list(:food_item, 
+                                                                                                        3, 
+                                                                                                        food_item_id: "")}}
             }.not_to change(Order, :count)
         end  
       end
