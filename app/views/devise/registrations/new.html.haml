@@ -1,6 +1,9 @@
 .ui.middle.aligned.center.aligned.grid 
   .column 
-    %h2.header Sign up
+    %h2.ui.blue.icon.header
+      %i.user.icon
+      .content  
+        Sign up
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = render "devise/shared/error_messages", resource: resource
       .ui.form.segment 
