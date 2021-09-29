@@ -11,8 +11,7 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    - if current_user
-      = render 'layouts/header'
+    = render 'layouts/header'
     - if flash[:notice]
       .ui.container.positive.center_flash.message
         %i.close.icon 
