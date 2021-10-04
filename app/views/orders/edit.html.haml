@@ -9,6 +9,7 @@
           = link_to "Cancel my order", daily_menu_order_path(@order.daily_menu, @order), method: :delete,  
                                                     data: { confirm: "Are you sure?" }, 
                                                     class: "ui red right ribbon label"
+          = render 'errors' if @order.errors.any?
           .ui.three.column.grid 
             = render 'food_items_fields', f: f
           %br/

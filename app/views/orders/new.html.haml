@@ -6,6 +6,7 @@
         = f.hidden_field :user_id, value: current_user.id
         = f.hidden_field :daily_menu_id, value: params[:daily_menu_id]
         .ui.piled.segment
+          = render 'errors' if @order.errors.any?
           .ui.three.column.grid 
             = render 'food_items_fields', f: f
           %br/
