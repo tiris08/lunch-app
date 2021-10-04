@@ -1,6 +1,6 @@
 class DailyMenusController < ApplicationController
   before_action :verify_is_not_admin!
-  
+  skip_before_action :authenticate_user!, :except => [:show]
   def index
     @daily_menus = DailyMenu.order(created_at: :desc).page(params[:page])
   end

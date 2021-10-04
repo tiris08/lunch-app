@@ -1,0 +1,7 @@
+.ui.segment
+  %h1.ui.blue.header
+    = image_tag('1')
+    .content
+      Welcome to the Lunch app
+      .sub.header 
+        = "Plese #{link_to 'Log in', new_user_session_path} or #{link_to 'Sign up', new_user_registration_path} if you haven`t already"
