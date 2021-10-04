@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     3.times {@order.order_items.build}
-    @course = ["First", "Main", "Drink"]
   end
 
   def create
@@ -12,15 +11,13 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to daily_menu_path(@order.daily_menu), notice: "Your order was successfully created"
     else
-      @course = ["First", "Main", "Drink"]
-      flash.now[:alert] = "You have to select all three courses"
+      3.times {@order.order_items.build}
       render :new
     end 
   end
 
   def edit
     @order = Order.find(params[:id])
-    @course = ["First", "Main", "Drink"]
   end
 
   def update
@@ -28,8 +25,6 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       redirect_to daily_menu_path(@order.daily_menu), notice: "Your order has been succesfully updated!"
     else
-      @course = ["First", "Main", "Drink"]
-      flash.now[:alert] = "You have to select all three courses"
       render :edit
     end
   end
@@ -44,7 +39,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :daily_menu_id, order_items_attributes: [:id, :food_item_id, :order_id])
+    params.require(:order).permit(:user_id, :daily_menu_id, order_items_attributes: [:id, :food_item_id, :order_id, :_destroy])
   end
 
   def verify_is_not_admin!
