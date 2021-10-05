@@ -9,8 +9,7 @@ RSpec.describe DailyMenusController do
       
       it "redirects to login page with alert flash" do 
         get :index
-        expect(response).to redirect_to(new_user_session_url) 
-        expect(flash[:alert]).to be_present 
+        expect(response).to render_template(:index)
       end
     end
 
