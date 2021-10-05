@@ -3,6 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title LunchApp
+    = favicon_link_tag '1.ico'
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
@@ -10,8 +11,7 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    - if current_user
-      = render 'layouts/header'
+    = render 'layouts/header'
     - if flash[:notice]
       .ui.container.positive.center_flash.message
         %i.close.icon 
