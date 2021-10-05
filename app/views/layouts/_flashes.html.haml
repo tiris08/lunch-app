@@ -1,0 +1,10 @@
+- if flash[:notice]
+  .ui.container.positive.center_flash.message
+    %i.close.icon 
+    .header
+      = notice
+- if flash[:alert]
+  .ui.container.negative.center_flash.message
+    %i.close.icon 
+    .header
+      = alert
