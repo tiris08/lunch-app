@@ -8,14 +8,12 @@ class Order < ApplicationRecord
   validate :uniq_food_items_course, :todays_menu_food_items
 
   def uniq_food_items_course
-    unless self.order_items.map {|e| e.food_item.course}.uniq == self.order_items.map {|e| e.food_item.course}
-      errors.add(:order_items, "You can`t order more than one item from each course")
-    end
+    return if self.order_items.map {|e| e.food_item.course}.uniq == self.order_items.map {|e| e.food_item.course}
+    errors.add(:order_items, "You can`t order more than one item from each course")
   end
 
   def todays_menu_food_items
-    unless self.order_items.all? { |order_item| order_item.food_item.created_at.today? }
-      errors.add(:order_items, "You can`t order food from different menu")
-    end
+    return if self.order_items.all? { |order_item| order_item.food_item.created_at.today? }
+    errors.add(:order_items, "You can`t order food from different menu")
   end
 end
