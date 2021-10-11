@@ -6,13 +6,19 @@
         = f.hidden_field :user_id, value: current_user.id
         = f.hidden_field :daily_menu_id, value: params[:daily_menu_id]
         .ui.piled.segment
-          = link_to "Cancel my order", daily_menu_order_path(@order.daily_menu, @order), method: :delete,  
-                                                    data: { confirm: "Are you sure?" }, 
-                                                    class: "ui red right ribbon label"
-          .ui.three.column.grid 
-            = render 'food_items_fields', f: f
-          %br/
-          = f.submit "Edit", class: "ui fluid primary button",  data: { confirm: "Are you sure you?" }
+          = render 'errors' if @order.errors.any?
+          .ui.three.column.grid
+            = f.simple_fields_for :order_items do |item|
+              = render 'order_item_fields', f: item
+            .column.ui.vertical.segment
+              = link_to_add_association f, :order_items, class: 'ui primary labaled button nest' do
+                %i.icon.plus 
+                Add item
+          %br/            
+          .ui.fluid.buttons
+            = f.submit "Confirm", class: "ui primary button",  data: { confirm: "Are you sure you?" }
+            .or
+            = link_to "Back", :back, class: "ui button"
     .column 
       = render 'shared/menu_list', menu: DailyMenu.find(params[:daily_menu_id])
       

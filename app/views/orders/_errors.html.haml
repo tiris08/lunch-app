@@ -1,0 +1,8 @@
+.ui.negative.message
+  %i.close.icon
+  .header
+    = pluralize(@order.errors.count, "error")
+    prohibited this order from being saved:
+  %ul.list
+    - @order.errors.each do |error|
+      %li= error.message
