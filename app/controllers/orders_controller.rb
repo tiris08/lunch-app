@@ -11,7 +11,8 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to daily_menu_path(@order.daily_menu), notice: "Your order was successfully created"
     else
-      3.times {@order.order_items.build}
+      @course = ["First", "Main", "Drink"]
+      flash.now[:alert] = "Try again. You have to select all three courses"
       render :new
     end 
   end
@@ -25,6 +26,8 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       redirect_to daily_menu_path(@order.daily_menu), notice: "Your order has been succesfully updated!"
     else
+      @course = ["First", "Main", "Drink"]
+      flash.now[:alert] = "Try again. You have to select all three courses"
       render :edit
     end
   end

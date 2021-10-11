@@ -1,7 +1,5 @@
 %h1.ui.center.aligned.header Your order
 .ui.piled.segment
-  - if @daily_menu.created_at.today?
-    = link_to "Edit", edit_daily_menu_order_path(@daily_menu, @user_order), class: "ui blue right ribbon label"
   %table.ui.very.basic.celled.table
     %thead
       %tr
@@ -22,4 +20,9 @@
         %th.right.aligned Total price
         %th
           = @user_order_cost
-          
+  - if @daily_menu.created_at.today?
+    .ui.two.buttons
+      = link_to "Edit", edit_daily_menu_order_path(@daily_menu, @user_order), class: "ui primary mini button"
+      = link_to "Cancel my order", daily_menu_order_path(@user_order.daily_menu, @user_order), method: :delete,   
+                                                      class: "ui mini button",
+                                                      data: { confirm: "Are you sure?" }
