@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :orders
   before_create :set_admin
+  validates :name, presence: true
 
   private
   
