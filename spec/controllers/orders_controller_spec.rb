@@ -5,15 +5,22 @@ RSpec.describe OrdersController, type: :controller do
   context "unathenticated user" do 
     
     let(:daily_menu) { create(:daily_menu) }
-    let(:food_items) { create_list(:food_item, 6, daily_menu: daily_menu)}
-    let(:order) {create(:order, daily_menu: daily_menu, 
-                                order_items_attributes: { "0": {food_item: food_items[0]},
-                                                          "1": {food_item: food_items[1]},
-                                                          "2": {food_item: food_items[2]} })}
+    let(:first_course) {create(:food_item, daily_menu: daily_menu, course: 0)}
+    let(:main_course) {create(:food_item, daily_menu: daily_menu, course: 1)}
+    let(:drink) {create(:food_item, daily_menu: daily_menu, course: 2)}
+    let(:order) { build(:order, daily_menu: daily_menu) }
+      
+      before do
+        3.times {order.order_items.build}
+        order.order_items[0].food_item = first_course
+        order.order_items[1].food_item = main_course
+        order.order_items[2].food_item = drink
+        order.save
+      end
 
-    
     describe "GET /new" do
       it "redirects to login page with alert flash" do 
+        expect(order.order_items.size).to eq(3)  
         get :new, params: {daily_menu_id: daily_menu}
         expect(response).to redirect_to(new_user_session_url) 
         expect(flash[:alert]).to be_present 
@@ -58,17 +65,20 @@ RSpec.describe OrdersController, type: :controller do
   context "authorized admin:user" do 
     
     let(:daily_menu) { create(:daily_menu) }
-    let(:food_items) { create_list(:food_item, 9, daily_menu: daily_menu)}
-    let(:order) {create(:order, daily_menu: daily_menu, 
-                                          order_items_attributes: { "0": {food_item: food_items[0]},
-                                                                    "1": {food_item: food_items[1]},
-                                                                    "2": {food_item: food_items[2]} })}
-
+    let(:first_course) {create(:food_item, daily_menu: daily_menu, course: 0)}
+    let(:main_course) {create(:food_item, daily_menu: daily_menu, course: 1)}
+    let(:drink) {create(:food_item, daily_menu: daily_menu, course: 2)}
+    let(:order) { build(:order, daily_menu: daily_menu) }
     let(:admin) {create(:random_user)}
     
     before do
       admin.update(is_admin: true)
       sign_in(admin)
+      3.times {order.order_items.build}
+      order.order_items[0].food_item = first_course
+      order.order_items[1].food_item = main_course
+      order.order_items[2].food_item = drink
+      order.save
     end
     
     describe "GET /new" do
@@ -115,16 +125,20 @@ RSpec.describe OrdersController, type: :controller do
   context "authorized user" do 
 
     let(:daily_menu) { create(:daily_menu) }
-    let(:food_items) { create_list(:food_item, 9, daily_menu: daily_menu)}
-    let(:order) {create(:order, daily_menu: daily_menu, 
-                                order_items_attributes: { "0": {food_item: food_items[0]},
-                                                          "1": {food_item: food_items[1]},
-                                                          "2": {food_item: food_items[2]} })}
+    let(:first_course) {create(:food_item, daily_menu: daily_menu, course: 0)}
+    let(:main_course) {create(:food_item, daily_menu: daily_menu, course: 1)}
+    let(:drink) {create(:food_item, daily_menu: daily_menu, course: 2)}
+    let(:order) { build(:order, daily_menu: daily_menu) }
     let(:user) {create(:random_user)}
     
     before do
       user.update(is_admin: false)
       sign_in(user)
+      3.times {order.order_items.build}
+      order.order_items[0].food_item = first_course
+      order.order_items[1].food_item = main_course
+      order.order_items[2].food_item = drink
+      order.save
     end
 
     describe "GET /new" do
@@ -169,7 +183,7 @@ RSpec.describe OrdersController, type: :controller do
                                   order: { daily_menu_id: daily_menu, 
                                   user_id: user,
                                   order_items_attributes: [attributes_for(:order_item, 
-                                                                          food_item_id: food_items[0])]}}
+                                                                          food_item_id: first_course)]}}
           expect(response).to redirect_to(daily_menu_path(daily_menu))  
         end
 
@@ -178,7 +192,7 @@ RSpec.describe OrdersController, type: :controller do
             post :create, params: { daily_menu_id: daily_menu, 
                                     order: { daily_menu_id: daily_menu, 
                                     user_id: user,
-                                    order_items_attributes: [attributes_for(:order_item, food_item_id: food_items[0])]}}
+                                    order_items_attributes: [attributes_for(:order_item, food_item_id: first_course)]}}
             }.to change(OrderItem, :count).by(1)
         end   
         
@@ -187,7 +201,7 @@ RSpec.describe OrdersController, type: :controller do
             post :create, params: { daily_menu_id: daily_menu, 
                                     order: { daily_menu_id: daily_menu, 
                                     user_id: user,
-                                    order_items_attributes: [attributes_for(:order_item, food_item_id: food_items[0])]}}
+                                    order_items_attributes: [attributes_for(:order_item, food_item_id: first_course)]}}
             }.to change(Order, :count).by(1)
         end
         
@@ -210,43 +224,43 @@ RSpec.describe OrdersController, type: :controller do
     describe "PATCH /update" do
       
       context "valid data" do
-        
+        let(:new_first_course) { create(:food_item, daily_menu: daily_menu, course: 0) }
+        let(:new_main_course) { create(:food_item, daily_menu: daily_menu, course: 1) }
+        let(:new_drink) { create(:food_item, daily_menu: daily_menu, course: 2) }
         it "redirects to daily_menu path" do 
           patch :update, params:{ daily_menu_id: daily_menu, id: order, user_id: user,
-                                  order: {order_items_attributes: { "0": {id: order.order_items[0], food_item_id: food_items[1]},
-                                                                    "1": {id: order.order_items[1], food_item_id: food_items[2]},
-                                                                    "2": {id: order.order_items[2], food_item_id: food_items[3]}}}}
+                                  order: {order_items_attributes: { "0": {id: order.order_items[0], food_item_id: new_first_course},
+                                                                    "1": {id: order.order_items[1], food_item_id: new_main_course},
+                                                                    "2": {id: order.order_items[2], food_item_id: new_drink}}}}
           expect(response).to redirect_to(daily_menu_path(daily_menu)) 
         end
   
         it "updates order items in database" do
           patch :update, params:{ daily_menu_id: daily_menu, id: order, user_id: user,
-                                  order: {order_items_attributes: { "0": {id: order.order_items[0], food_item_id: food_items[1]},
-                                                                    "1": {id: order.order_items[1], food_item_id: food_items[2]},
-                                                                    "2": {id: order.order_items[2], food_item_id: food_items[3]}}}}
+                                  order: {order_items_attributes: { "0": {id: order.order_items[0], food_item_id: new_first_course},
+                                                                    "1": {id: order.order_items[1], food_item_id: new_main_course},
+                                                                    "2": {id: order.order_items[2], food_item_id: new_drink}}}}
           order.reload
-          expect(order.order_items[2].food_item).to eq(food_items[3]) 
+          expect(order.order_items[2].food_item).to eq(new_drink) 
         end          
       end
 
       context "without food_items" do
-        let(:another_daily_menu) {create(:daily_menu)}
-        let(:invalid_food_items) {create_list(:food_item, 3, daily_menu: another_daily_menu )}
         it "renders #edit" do 
           patch :update, params:{ daily_menu_id: daily_menu, id: order, user_id: user,
-            order: {order_items_attributes: { "0": {id: order.order_items[0], food_item_id: ""},
-                                              "1": {id: order.order_items[1], food_item_id: ""},
-                                                "2": {id: order.order_items[2], food_item_id: ""}}}}
+            order: {order_items_attributes: { "0": {id: order.order_items[0], _destroy: true},
+                                              "1": {id: order.order_items[1], _destroy: true},
+                                                "2": {id: order.order_items[2], _destroy: true}}}}
           expect(response).to render_template(:edit)
         end
   
         it "doesn`t update order order_items in db" do
           patch :update, params:{ daily_menu_id: daily_menu, id: order, user_id: user,
-                                  order: {order_items_attributes: { "0": {id: order.order_items[0], food_item_id: ""},
-                                                                    "1": {id: order.order_items[1], food_item_id: ""},
-                                                                    "2": {id: order.order_items[2], food_item_id: ""}}}}
+                                  order: {order_items_attributes: { "0": {id: order.order_items[0], _destroy: true},
+                                                                    "1": {id: order.order_items[1], _destroy: true},
+                                                                    "2": {id: order.order_items[2], _destroy: true}}}}
           order.reload
-          expect(order.order_items[2].food_item).to eq(food_items[2]) 
+          expect(order.order_items[2].food_item).to eq(drink) 
         end    
       end
       

@@ -84,7 +84,9 @@ RSpec.feature 'Users', type: :feature do
 
     scenario "can see his order for the particular day" do
       pizza = create(:food_item, daily_menu: menu1, name: 'Pizza')
-      create(:order, daily_menu: menu1, user: user, order_items_attributes: { "0": {food_item: pizza}})
+      order = build(:order, daily_menu: menu1, user: user)
+      order.order_items.build(food_item: pizza)
+      order.save
       visit root_path
       find('.ui.link.card', text: menu1.created_at.strftime('%A')).click_link('History')
       within('.column', text: 'Your order', match: :first) do
@@ -140,7 +142,9 @@ RSpec.feature 'Users', type: :feature do
 
     scenario "can see users orders on the day page", js: true do
       chicken = create(:food_item, daily_menu: menu1, name: 'Chicken')
-      create(:order, daily_menu: menu1, user: users[0], order_items_attributes: { "0": {food_item: chicken}})
+      order = build(:order, daily_menu: menu1, user: users[0])
+      order.order_items.build(food_item: chicken)
+      order.save
       visit root_path
       find('.ui.link.card', match: :first).click_link("History")
       find('.item', text: 'Users orders').click

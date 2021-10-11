@@ -43,11 +43,13 @@ RSpec.feature 'order', type: :feature do
     end
 
     scenario "update existent order", js: true do 
-      create(:order, daily_menu: menu, 
-                     user: user, 
-                     order_items_attributes: { "0": {food_item: food_items[0]},
-                                                "1": {food_item: food_items[1]},
-                                                "2": {food_item: food_items[2]} })
+      order = build(:order, daily_menu: menu, user: user)
+      3.times {order.order_items.build}
+      order.order_items[0].food_item = first
+      order.order_items[1].food_item = main
+      order.order_items[2].food_item = drink
+      order.save
+      new_first = create(:food_item, daily_menu: menu, name: "whatever", course: 0)
       visit root_path
       within find('.ui.menu') do
         click_link('Log in')
@@ -57,21 +59,19 @@ RSpec.feature 'order', type: :feature do
       click_button 'Log in'
       click_link 'History'
       click_link 'Edit'
-      select(first.name,	from: 'First')
-      select(main.name,	from: 'Main')
-      select(drink.name,	from: 'Drink')
+      find(:xpath, '//*[@id="order_order_items_attributes_0_food_item_id"]').select(new_first.name)
       click_button('Confirm')
       page.driver.browser.switch_to.alert.accept
       expect(page).to have_content("Your order has been succesfully updated!")
     end
 
     scenario "delete existent order", js: true do 
-      create(:order, daily_menu: menu, 
-                     user: user, 
-                     order_items_attributes: { "0": {food_item: food_items[0]},
-                                                "1": {food_item: food_items[1]},
-                                                "2": {food_item: food_items[2]} })
-
+      order = build(:order, daily_menu: menu, user: user)
+      3.times {order.order_items.build}
+      order.order_items[0].food_item = first
+      order.order_items[1].food_item = main
+      order.order_items[2].food_item = drink
+      order.save
       visit root_path
       within find('.ui.menu') do
         click_link('Log in')
