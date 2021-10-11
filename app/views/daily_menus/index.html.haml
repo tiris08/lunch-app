@@ -1,4 +1,5 @@
 .ui.container
+  = render 'layouts/welcome' unless current_user
   .ui.vertical.segment
     .ui.five.column.grid
       - @daily_menus.reverse.each do |menu|
@@ -11,7 +12,10 @@
                 = menu.created_at.strftime("%d %b %Y")
                 %br/
                 %br/
-            = make_order_or_see_history_button(menu)
+            - if current_user
+              = make_order_or_see_history_button(menu)
+            - else 
+              %button.ui.disabled.bottom.attached.button Log in to see more
       .one.column.row
         .celled.center.aligned.column
           = paginate @daily_menus
