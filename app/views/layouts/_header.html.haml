@@ -12,6 +12,7 @@
         .item
           = link_to 'Log in', new_user_session_path, class: 'ui primary button' 
         = link_to 'Sign up', new_user_registration_path, class: 'blue item'
+        = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post, class: 'item'
       - else 
         = link_to 'Settings', edit_user_registration_path, class: "link item"
         .item

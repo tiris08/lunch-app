@@ -1,6 +1,0 @@
-= f.simple_fields_for :order_items do |s|
-  .column 
-    .field
-      = s.input :food_item_id, label: @course[s.index], 
-                               collection: FoodItem.where(daily_menu: params[:daily_menu_id], course: s.index)
-      

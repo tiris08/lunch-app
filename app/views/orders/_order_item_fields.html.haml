@@ -1,0 +1,6 @@
+.nested-fields.column 
+  .ui.segment
+    .field
+      = f.input :food_item_id, include_blank: true,
+                                collection: group_food_itmes_by_course(@order),  as: :grouped_select, group_method: :last
+    = link_to_remove_association "Remove item", f, class: "ui fluid button"
