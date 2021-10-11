@@ -11,6 +11,6 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = render 'layouts/header' if current_user
+    = render 'layouts/header'
     = render 'layouts/flashes'
     = yield
