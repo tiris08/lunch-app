@@ -7,9 +7,9 @@
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), 
                                                   html: { method: :put }) do |f|
       = render "devise/shared/error_messages", resource: resource
-      .ui.form.segment 
+      .ui.segment 
         .field
-          = f.input :name, label: 'Full Name', autofocus: true
+          = f.input :name, label: 'Full Name', autofocus: true, required: false
         .field
           = f.input :email
         .field
@@ -24,6 +24,6 @@
       %h3 Cancel my account
       %p Unhappy? 
       = link_to "Cancel my account", registration_path(resource_name), 
-                                    data: { confirm: "Are you sure?" }, 
+                                    data: { confirm_swal: 'Are you sure?' }, 
                                     method: :delete, 
                                     class: 'ui negative basic button'

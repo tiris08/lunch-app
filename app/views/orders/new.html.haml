@@ -10,7 +10,7 @@
           = f.simple_fields_for :order_items do |item|
             = render 'new_order_items_fields', f: item
           .ui.fluid.buttons
-            = f.submit "Order", class: "ui primary button",  data: { confirm: "Are you sure you?" }
+            = f.submit "Order", class: "ui primary button",  data: { confirm_swal: 'Are you sure?' }
             .or
             = link_to "Back", :back, class: "ui button"
     .column 

@@ -9,7 +9,7 @@
           = render 'errors' if @order.errors.any?
           = render 'order_item_fields', f: f 
           .ui.fluid.buttons
-            = f.submit "Confirm", class: "ui primary button",  data: { confirm: "Are you sure you?" }
+            = f.submit "Confirm", class: "ui primary button",  data: { confirm_swal: 'Are you sure?' }
             .or
             = link_to "Back", :back, class: "ui button"
     .column 
