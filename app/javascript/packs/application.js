@@ -22,6 +22,9 @@ $(document).on('turbolinks:load', function() {
     $(this).closest('.message').transition('fade');
   });
   
+  $('select.dropdown')
+  .dropdown()
+
   // order update form
 
   $('.ui.three.column.grid').on('cocoon:after-insert', function() {
