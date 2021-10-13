@@ -4,6 +4,6 @@
       = f.input :name
     .field
       = f.input :price
-    .field
-      = f.input :course, label: "Course:", as: :radio_buttons, collection: [['First', "first_course"], ['Main', "main_course"], ['Drink', "drink"]]
+    .inline.fields
+      = f.input :course, required: false, input_html: { class: "ui radio checkbox"}, as: :radio_buttons, collection: [['First', "first_course"], ['Main', "main_course"], ['Drink', "drink"]]
     = link_to_remove_association "Remove item", f, class: "ui fluid button"
