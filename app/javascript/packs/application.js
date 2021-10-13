@@ -14,6 +14,7 @@ ActiveStorage.start()
 
 
 import '@doabit/semantic-ui-sass'
+import 'application/sweet-alert-confirm';
 
 $(document).on('turbolinks:load', function() {
   $('.ui.radio.checkbox').checkbox();
