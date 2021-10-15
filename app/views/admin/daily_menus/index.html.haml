@@ -8,7 +8,7 @@
         Create a menu for today 
   .ui.vertical.segment
     .ui.five.column.grid
-      - @daily_menus.reverse.each do |menu|
+      - @index_facade.paginated_daily_menus.reverse.each do |menu|
         .column 
           .ui.fluid.link.card 
             .content 
@@ -21,5 +21,5 @@
             = link_to 'History', admin_daily_menu_path(menu), class: "ui bottom attached button" 
       .one.column.row
         .center.aligned.column
-          = paginate @daily_menus
+          = paginate @index_facade.paginated_daily_menus
           

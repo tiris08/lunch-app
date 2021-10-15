@@ -1,10 +1,10 @@
 class Admin::DailyMenusController < Admin::BaseController
+  before_action :find_daily_menu, only: [:show, :edit, :update]
   def index
-    @daily_menus = DailyMenu.order(created_at: :desc).page(params[:page])
+    @index_facade = DailyMenus::IndexFacade.new(params)
   end
 
   def show
-    @daily_menu = DailyMenu.find(params[:id])
   end
 
   def new
@@ -22,11 +22,9 @@ class Admin::DailyMenusController < Admin::BaseController
   end
 
   def edit
-    @daily_menu = DailyMenu.find(params[:id])
   end
 
   def update
-    @daily_menu = DailyMenu.find(params[:id])
     if @daily_menu.update(daily_menu_params)
       redirect_to admin_daily_menu_path(@daily_menu), notice: "Menu updated!"
     else
@@ -38,6 +36,10 @@ class Admin::DailyMenusController < Admin::BaseController
 
   def daily_menu_params
     params.require(:daily_menu).permit(food_items_attributes:[:id, :name, :price, :course, :_destroy])
+  end
+
+  def find_daily_menu
+    @daily_menu = DailyMenu.find(params[:id])
   end
   
 end 

@@ -8,11 +8,12 @@ module DailyMenus
     end
 
     def user_order
-      @user_order ||= current_user.orders.find_by(daily_menu: daily_menu)
+      @user_order ||= current_user&.orders&.find_by(daily_menu: daily_menu)
     end
 
     def user_order_cost
       @user_order_cost ||= user_order&.food_items&.pluck(:price)&.sum
     end
+
   end
 end
