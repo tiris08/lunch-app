@@ -1,6 +1,6 @@
 - if page.current?
   = link_to url, title: page, class: 'item active', remote: remote do
-    = "#{@daily_menus.first.created_at.strftime("%b %d")} - #{@daily_menus.last.created_at.strftime("%b %d")}"
+    = "#{@index_facade.paginated_daily_menus.first.created_at.strftime("%b %d")} - #{@index_facade.paginated_daily_menus.last.created_at.strftime("%b %d")}"
 - else
   = link_to url, title: page, class: 'item', remote: remote do
     = page
