@@ -1,14 +1,14 @@
 class DailyMenusController < ApplicationController
   before_action :verify_is_not_admin!
-  skip_before_action :authenticate_user!, :except => [:show]
+  skip_before_action :authenticate_user!, except: [:show]
+  before_action :find_daily_menu, only: [:show]
+  
   def index
     @index_facade = DailyMenus::IndexFacade.new(params)
   end
 
   def show
-    @daily_menu = DailyMenu.find(params[:id])
-    @user_order = current_user.orders.find_by(daily_menu: @daily_menu)
-    @user_order_cost = @user_order&.food_items&.pluck(:price)&.sum
+    @show_facade = DailyMenus::ShowFacade.new(@daily_menu, current_user)
   end
 
   private
@@ -18,4 +18,9 @@ class DailyMenusController < ApplicationController
       redirect_to admin_root_path, alert: "You don't belong there"
     end
   end
+
+  def find_daily_menu
+    @daily_menu = DailyMenu.find(params[:id])
+  end
+  
 end

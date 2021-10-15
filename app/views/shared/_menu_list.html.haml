@@ -7,8 +7,8 @@
       %tr
         %th 
           Menu items
-          - if current_user.is_admin? && @daily_menu.created_at.today? 
-            = link_to "Edit", edit_admin_daily_menu_path(@daily_menu)
+          - if current_user.is_admin? && menu.created_at.today? 
+            = link_to "Edit", edit_admin_daily_menu_path(menu)
         %th Price
     %tbody
       - menu.food_items.order(:course).each do |item|
