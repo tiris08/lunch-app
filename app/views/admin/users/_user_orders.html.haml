@@ -7,7 +7,7 @@
         %th Menu items 
         %th Total cost
       %tbody
-        - @user.orders.each do |order|
+        - user.orders.each do |order|
           %tr
             %td
               = link_to "#{order.daily_menu.created_at.strftime("%d %b %Y")}", admin_daily_menu_path(order.daily_menu)

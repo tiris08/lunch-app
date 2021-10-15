@@ -10,17 +10,13 @@
               %th Registered at
               %th Last order
           %tbody
-            - @users.each do |user|
+            - users.each do |user|
               %tr
                 %td
-                  = link_to "#{user.name}", admin_user_path(user)
+                  = link_to user.name, admin_user_path(user)
                 %td
                   = user.email
                 %td
-                  = user.created_at.strftime("%d %b %Y")
+                  = user.joined_in_date
                 %td
-                  - if user.orders.last.nil? 
-                    no orders yet
-                  - else
-                    = user.orders.last&.created_at&.strftime("%d %b %Y")
-              
+                  = user.last_order_date

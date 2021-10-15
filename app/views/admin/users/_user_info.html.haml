@@ -5,15 +5,15 @@
       %tr 
         %td Name:
         %td
-          = @user.name
+          = user.name
       %tr
         %td Email:
         %td
-          = @user.email
+          = user.email
       %tr 
         %td Joined in 
         %td 
-          = @user.created_at.strftime("%d %b %Y")
+          = user.joined_in_date
       %tr 
         %td Total amount of orders:
         %td 
