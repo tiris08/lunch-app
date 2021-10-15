@@ -17,8 +17,8 @@
       %tr 
         %td Total amount of orders:
         %td 
-          = @user_total_orders
+          = @show_facade.user_total_orders
       %tr 
         %td Total spent:
         %td  
-          = "#{@user_total_spendings}$" 
+          = number_to_currency(@show_facade.user_total_spending)
