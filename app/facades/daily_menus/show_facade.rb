@@ -14,6 +14,5 @@ module DailyMenus
     def user_order_cost
       @user_order_cost ||= user_order&.food_items&.pluck(:price)&.sum
     end
-
   end
 end
