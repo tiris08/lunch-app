@@ -19,6 +19,12 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @first_course = @order.order_items.find_or_initialize_by(food_item: @order.food_items
+                                                              .find_by(course: "first_course"))
+    @main_course = @order.order_items.find_or_initialize_by(food_item: @order.food_items
+                                                              .find_by(course: "main_course"))
+    @drink = @order.order_items.find_or_initialize_by(food_item: @order.food_items
+                                                              .find_by(course: "drink"))
   end
 
   def update
