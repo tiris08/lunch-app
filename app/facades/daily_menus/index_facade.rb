@@ -1,5 +1,8 @@
 module DailyMenus
   class IndexFacade
+    include ActionView::Helpers
+    include Rails.application.routes.url_helpers
+    
     attr_reader :params
     
     def initialize(params)
@@ -8,10 +11,6 @@ module DailyMenus
 
     def paginated_daily_menus
       DailyMenu.order(created_at: :desc).page(params[:page])
-    end
-
-    def last_daily_menu
-      DailyMenu.last
     end
   end
 end
