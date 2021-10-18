@@ -9,5 +9,9 @@ module DailyMenus
     def paginated_daily_menus
       DailyMenu.order(created_at: :desc).page(params[:page])
     end
+
+    def last_daily_menu
+      DailyMenu.last
+    end
   end
 end
