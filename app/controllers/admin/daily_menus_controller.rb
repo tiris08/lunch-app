@@ -1,10 +1,12 @@
 class Admin::DailyMenusController < Admin::BaseController
   before_action :find_daily_menu, only: [:show, :edit, :update]
+  
   def index
-    @index_facade = DailyMenus::IndexFacade.new(params)
+    @index_facade = Admin::DailyMenus::IndexFacade.new(params)
   end
 
   def show
+    @show_facade = Admin::DailyMenus::ShowFacade.new(@daily_menu)
   end
 
   def new
