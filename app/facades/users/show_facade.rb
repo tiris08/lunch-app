@@ -1,5 +1,6 @@
 module Users
   class ShowFacade
+    include ActionView::Helpers::NumberHelper
     attr_reader :user
     
     def initialize(user)
@@ -7,11 +8,11 @@ module Users
     end
 
     def user_total_spending
-      @user_total_spending ||= user.orders.includes(:food_items).pluck(:price).sum
+      number_to_currency(user.orders.includes(:food_items).pluck(:price).sum)
     end
 
     def user_total_orders
-      @user_total_orders ||= user.orders.count
+      user.orders.count
     end
   end
 end
