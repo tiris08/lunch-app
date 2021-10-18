@@ -12,5 +12,21 @@ class DailyMenuDecorator < ApplicationDecorator
   def created_at_day 
     created_at.strftime("%A")
   end
+
+  def active_unactive_menu_link
+    if h.current_user
+      make_order_or_history_link(daily_menu)
+    else
+      h.content_tag(:button, "History", class: "ui bottom attached button", "data-tooltip"  => "You have to sign in first")
+    end
+  end
+
+  def make_order_or_history_link(menu)
+    if menu.created_at.today? && h.current_user.orders.find_by(daily_menu: menu).nil?
+      h.link_to 'Make an order', h.new_daily_menu_order_path(menu), 
+                                class: "ui bottom attached blue button" 
+    else 
+      h.link_to 'History', h.daily_menu_path(menu), class: "ui bottom attached button" 
+    end
   end
 end

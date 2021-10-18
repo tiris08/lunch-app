@@ -2,20 +2,17 @@
   = render 'layouts/welcome' unless current_user
   .ui.vertical.segment
     .ui.five.column.grid
-      - @index_facade.paginated_daily_menus.reverse.each do |menu|
+      - @index_facade.paginated_daily_menus.decorate.reverse.each do |menu|
         .column 
           .ui.fluid.link.card 
             .content 
               .header
-                = menu.created_at.strftime("%A")
+                = menu.created_at_day
               .description
-                = menu.created_at.strftime("%d %b %Y")
+                = menu.formatted_created_at
                 %br/
                 %br/
-            - if current_user
-              = make_order_or_see_history_button(menu)
-            - else 
-              %button.ui.disabled.bottom.attached.button Log in to see more
+            = menu.active_unactive_menu_link
       .one.column.row
         .celled.center.aligned.column
           = paginate @index_facade.paginated_daily_menus

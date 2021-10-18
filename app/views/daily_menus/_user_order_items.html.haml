@@ -6,13 +6,13 @@
         %th Order items
         %th Price
     %tbody
-      - @show_facade.user_order&.food_items&.each do |item|
+      - @show_facade.user_order&.food_items&.decorate.each do |item|
         %tr
           %td
             %h4.ui.header
               = item.name
               .sub.header
-                = item.course.humanize
+                = item.humanized_course
           %td
             = item.price
     %tfoot 
