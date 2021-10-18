@@ -7,12 +7,12 @@
             %td Total sold:
             %td 
               %h4
-                = total_sold(@daily_menu)
+                = @show_facade.total_sold
           %tr 
             %td Orders amount:
             %td
               %h4  
-                = @daily_menu.orders.size
+                = @show_facade.orders_size
   .twelve.wide.column
     .ui.segment
       %table.ui.very.basic.large.table
@@ -22,12 +22,12 @@
           %tr 
             %td First course dish:
             %td 
-              = most_popular_item(@daily_menu, "first_course")
+              = @show_facade.most_popular_first_course
           %tr 
             %td Main course dish:
             %td 
-              = most_popular_item(@daily_menu, "main_course")
+              = @show_facade.most_popular_main_course
           %tr 
             %td Drink:
             %td  
-              = most_popular_item(@daily_menu, "drink")
+              = @show_facade.most_popular_drink

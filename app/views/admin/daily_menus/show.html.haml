@@ -4,11 +4,11 @@
     .item{"data-tab" => "menu-list"} Menu list
     .item{"data-tab" => "users-orders"} Users orders
     .right.aligned.item
-      = @daily_menu.decorate.formatted_created_at_long
+      = @show_facade.daily_menu.decorate.formatted_created_at_long
   .ui.active.tab{"data-tab" => "day-info"}
     = render 'day_stats'
   .ui.tab{"data-tab" => "menu-list"}
-    = render 'shared/menu_list', menu: @daily_menu
+    = render 'shared/menu_list', menu: @show_facade.daily_menu
   .ui.tab{"data-tab" => "users-orders"}
     = render 'daily_menu_orders'
 

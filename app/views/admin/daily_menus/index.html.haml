@@ -1,16 +1,16 @@
 .ui.container
   .ui.vertical.segment
-    = @index_facade.last_daily_menu.decorate.edit_or_create_menu_link
+    = @index_facade.edit_or_create_menu_link
   .ui.vertical.segment
     .ui.five.column.grid
-      - @index_facade.paginated_daily_menus.reverse.each do |menu|
+      - @index_facade.paginated_daily_menus.decorate.reverse.each do |menu|
         .column 
           .ui.fluid.link.card 
             .content 
               .header
-                = menu.decorate.created_at_day
+                = menu.created_at_day
               .description
-                = menu.decorate.formatted_created_at
+                = menu.formatted_created_at
                 %br/
                 %br/
             = link_to 'History', admin_daily_menu_path(menu), class: "ui bottom attached button" 
