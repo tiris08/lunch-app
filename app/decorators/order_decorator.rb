@@ -8,6 +8,6 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def cost
-    object.food_items.pluck(:price).sum
+    h.number_to_currency(object.food_items.pluck(:price).sum)
   end
 end

@@ -14,5 +14,5 @@
               - order.food_items.each_with_index do |item, index| 
                 = index == order.food_items.size - 1 ? "#{item.name}." : "#{item.name}," 
             %td  
-              = order.food_items.pluck(:price).sum
+              = order.cost
               
