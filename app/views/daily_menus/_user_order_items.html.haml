@@ -25,4 +25,4 @@
       = link_to "Edit", edit_daily_menu_order_path(@daily_menu, @user_order), class: "ui primary mini button"
       = link_to "Cancel my order", daily_menu_order_path(@user_order.daily_menu, @user_order), method: :delete,   
                                                       class: "ui mini button",
-                                                      data: { confirm: "Are you sure?" }
+                                                      data: { confirm_swal: 'Are you sure?' }
