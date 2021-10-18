@@ -1,4 +1,5 @@
 class UserDecorator < ApplicationDecorator
+  decorates_association :orders
   
   def joined_in_date
     object.created_at.strftime("%d %b %Y")
