@@ -1,6 +1,5 @@
-class UserDecorator < Draper::Decorator
-  delegate_all
-
+class UserDecorator < ApplicationDecorator
+  
   def joined_in_date
     object.created_at.strftime("%d %b %Y")
   end

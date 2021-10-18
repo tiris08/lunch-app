@@ -1,5 +1,4 @@
-class DailyMenuDecorator < Draper::Decorator
-  delegate_all
+class DailyMenuDecorator < ApplicationDecorator
 
   def formatted_created_at
     object.created_at.strftime("%d %b %Y")
