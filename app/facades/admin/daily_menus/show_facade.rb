@@ -10,15 +10,15 @@ module Admin
       end
 
       def orders_size
-        daily_menu.orders.size
+        @orders_size ||= daily_menu.orders.size
       end
 
       def total_sold
-        number_to_currency(daily_menu.orders.includes(:food_items).pluck(:price).sum)
+        @total_sold ||= number_to_currency(daily_menu.orders.includes(:food_items).pluck(:price).sum)
       end
 
       def most_popular_first_course
-        OrderItem.includes(:food_item).where(food_item: { daily_menu: daily_menu, 
+        @most_popular_first_course ||= OrderItem.includes(:food_item).where(food_item: { daily_menu: daily_menu, 
                                                           course: 'first_course' }).group(:food_item)
                                                                                    .count
                                                                                    .max_by { |k, v| v }
@@ -27,7 +27,7 @@ module Admin
       end
       
       def most_popular_main_course
-        OrderItem.includes(:food_item).where(food_item: { daily_menu: daily_menu, 
+        @most_popular_main_course ||= OrderItem.includes(:food_item).where(food_item: { daily_menu: daily_menu, 
                                                           course: 'main_course' }).group(:food_item)
                                                                                   .count
                                                                                   .max_by { |k, v| v }
@@ -36,7 +36,7 @@ module Admin
       end
       
       def most_popular_drink
-        OrderItem.includes(:food_item).where(food_item: { daily_menu: daily_menu, 
+        @most_popular_drink ||= OrderItem.includes(:food_item).where(food_item: { daily_menu: daily_menu, 
                                                           course: 'drink' }).group(:food_item)
                                                                             .count
                                                                             .max_by { |k, v| v }

@@ -8,11 +8,11 @@ module Users
     end
 
     def user_total_spending
-      number_to_currency(user.orders.includes(:food_items).pluck(:price).sum)
+      @user_total_spending ||= number_to_currency(user.orders.includes(:food_items).pluck(:price).sum)
     end
 
     def user_total_orders
-      user.orders.count
+      @user_total_orders ||= user.orders.count
     end
   end
 end
