@@ -11,7 +11,7 @@ module Admin
       end
 
       def paginated_daily_menus
-        @daily_menus ||= DailyMenu.order(created_at: :desc).page(params[:page])
+        @daily_menus ||= DailyMenu.order(created_at: :desc).page(params[:page]).decorate
       end
 
       def edit_or_create_menu_link

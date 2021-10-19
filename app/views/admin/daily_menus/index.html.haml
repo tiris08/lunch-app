@@ -3,7 +3,7 @@
     = @index_facade.edit_or_create_menu_link
   .ui.vertical.segment
     .ui.five.column.grid
-      - @index_facade.paginated_daily_menus.decorate.reverse.each do |menu|
+      - @index_facade.paginated_daily_menus.reverse.each do |menu|
         .column 
           .ui.fluid.link.card 
             .content 

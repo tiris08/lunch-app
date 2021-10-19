@@ -6,7 +6,7 @@ module Admin
       attr_reader :daily_menu
 
       def initialize(daily_menu)
-        @daily_menu = daily_menu
+        @daily_menu = daily_menu.decorate
       end
 
       def orders_size
