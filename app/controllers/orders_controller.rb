@@ -36,7 +36,6 @@ class OrdersController < ApplicationController
     redirect_to root_path, notice: "Your order has been succesfully deleted"
   end
   
-  
   private
 
   def order_params
