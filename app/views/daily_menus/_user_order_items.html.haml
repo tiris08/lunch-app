@@ -6,7 +6,7 @@
         %th Order items
         %th Price
     %tbody
-      - @show_facade.user_order_items&.each do |item|
+      - @facade.user_order_items&.each do |item|
         %tr
           %td
             %h4.ui.header
@@ -19,12 +19,12 @@
       %tr 
         %th.right.aligned Total price
         %th
-          = @show_facade.user_order_cost
-  - if @show_facade.daily_menu.created_at.today?
+          = @facade.user_order_cost
+  - if @facade.daily_menu.created_at.today?
     .ui.two.buttons
-      = link_to "Edit", edit_daily_menu_order_path(@show_facade.daily_menu, @show_facade.user_order), 
+      = link_to "Edit", edit_daily_menu_order_path(@facade.daily_menu, @facade.user_order), 
                                                                       class: "ui primary mini button"
-      = link_to "Cancel my order", daily_menu_order_path(@show_facade.daily_menu, @show_facade.user_order), 
+      = link_to "Cancel my order", daily_menu_order_path(@facade.daily_menu, @facade.user_order), 
                                                       method: :delete,   
                                                       class: "ui mini button",
                                                       data: { confirm_swal: 'Are you sure?' }

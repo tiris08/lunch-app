@@ -2,7 +2,7 @@
   = render 'layouts/welcome' unless current_user
   .ui.vertical.segment
     .ui.five.column.grid
-      - @index_facade.paginated_daily_menus.reverse.each do |menu|
+      - @facade.paginated_daily_menus.reverse.each do |menu|
         .column 
           .ui.fluid.link.card 
             .content 
@@ -15,5 +15,5 @@
             = menu.active_unactive_menu_link
       .one.column.row
         .celled.center.aligned.column
-          = paginate @index_facade.paginated_daily_menus
+          = paginate @facade.paginated_daily_menus
           

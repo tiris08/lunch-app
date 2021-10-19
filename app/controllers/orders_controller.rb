@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :find_order, only:[:update, :destroy, :edit]
   def new
     @order = Order.new
-    @new_facade = Orders::NewFacade.new(@order, params)
+    @facade = Orders::NewFacade.new(@order, params)
   end
 
   def create
@@ -11,21 +11,21 @@ class OrdersController < ApplicationController
     if @order.save
       redirect_to daily_menu_path(@order.daily_menu), notice: "Your order was successfully created"
     else
-      @new_facade = Orders::NewFacade.new(@order, params)
+      @facade = Orders::NewFacade.new(@order, params)
       flash.now[:alert] = "Try again. You have to select all three courses"
       render :new
     end 
   end
 
   def edit
-    @edit_facade = Orders::EditFacade.new(@order, params)
+    @facade = Orders::EditFacade.new(@order, params)
   end
 
   def update
     if @order.update(order_params)
       redirect_to daily_menu_path(@order.daily_menu), notice: "Your order has been succesfully updated!"
     else
-      @edit_facade = Orders::EditFacade.new(@order, params)
+      @facade = Orders::EditFacade.new(@order, params)
       flash.now[:alert] = "Try again. You have to select all three courses"
       render :edit
     end

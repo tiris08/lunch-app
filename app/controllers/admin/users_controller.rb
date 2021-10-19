@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :find_user, only:[:show]
+  before_action :find_user, only: [:show]
   decorates_assigned :user, :users
   
   def index
@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @show_facade = Users::ShowFacade.new(@user)
+    @facade = Users::ShowFacade.new(@user)
   end
 
   private

@@ -4,11 +4,11 @@ class DailyMenusController < ApplicationController
   before_action :find_daily_menu, only: [:show]
   
   def index
-    @index_facade = DailyMenus::IndexFacade.new(params)
+    @facade = DailyMenus::IndexFacade.new(params)
   end
 
   def show
-    @show_facade = DailyMenus::ShowFacade.new(@daily_menu, current_user)
+    @facade = DailyMenus::ShowFacade.new(@daily_menu, current_user)
   end
 
   private

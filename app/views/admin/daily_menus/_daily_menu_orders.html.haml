@@ -6,7 +6,7 @@
         %th Menu items
         %th Total cost
       %tbody
-        - @show_facade.menu_orders.each do |order|
+        - @facade.menu_orders.each do |order|
           %tr
             %td 
               = link_to order.user.name, admin_user_path(order.user)
