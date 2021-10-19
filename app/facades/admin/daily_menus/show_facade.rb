@@ -6,7 +6,7 @@ module Admin
       attr_reader :daily_menu
 
       def initialize(daily_menu)
-        @daily_menu = daily_menu.decorate
+        @daily_menu = daily_menu
       end
 
       def orders_size
@@ -15,6 +15,10 @@ module Admin
 
       def total_sold
         @total_sold ||= number_to_currency(daily_menu.orders.includes(:food_items).pluck(:price).sum)
+      end
+
+      def menu_orders
+        @menu_orders ||= daily_menu.orders.decorate
       end
 
       def most_popular_first_course
