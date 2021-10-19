@@ -6,7 +6,7 @@
         %th Order items
         %th Price
     %tbody
-      - @show_facade.user_order&.food_items&.decorate.each do |item|
+      - @show_facade.user_order_items&.each do |item|
         %tr
           %td
             %h4.ui.header
