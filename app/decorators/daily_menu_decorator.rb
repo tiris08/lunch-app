@@ -13,6 +13,10 @@ class DailyMenuDecorator < ApplicationDecorator
     created_at.strftime("%A")
   end
 
+  def created_at_day_month
+    created_at.strftime("%b %d")
+  end
+  
   def active_unactive_menu_link
     if h.current_user
       make_order_or_history_link(daily_menu)
