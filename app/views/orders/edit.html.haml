@@ -13,5 +13,5 @@
             .or
             = link_to "Back", :back, class: "ui button"
     .column 
-      = render 'shared/menu_list', menu: DailyMenu.find(params[:daily_menu_id])
+      = render 'shared/menu_list', menu: @edit_facade.daily_menu
       

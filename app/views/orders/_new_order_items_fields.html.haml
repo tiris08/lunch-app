@@ -1,3 +1,3 @@
 .field
   = f.input :food_item_id, label: courses[f.index], input_html: { class: "ui selection dropdown" }, prompt: 'Select',
-                              collection: FoodItem.where(daily_menu: params[:daily_menu_id], course: f.index)
+                              collection: @new_facade.food_items_collection(f.index)

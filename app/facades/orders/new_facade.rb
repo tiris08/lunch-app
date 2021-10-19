@@ -9,7 +9,17 @@ module Orders
     end
 
     def daily_menu
-      @daily_menu ||= DailyMenu.find(params[:daily_menu_id]).decorate
+      @daily_menu ||= DailyMenu.find(daily_menu_id).decorate
+    end
+
+    def food_items_collection(course)
+      FoodItem.where(daily_menu_id: daily_menu_id, course: course)  
+    end
+    
+    private
+
+    def daily_menu_id
+      @daily_menu_id ||= params[:daily_menu_id]
     end
   end
 end

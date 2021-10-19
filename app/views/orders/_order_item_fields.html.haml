@@ -1,21 +1,20 @@
 .ui.vertical.segment
-  = f.simple_fields_for :order_items, @first_course do |s|
+  = f.simple_fields_for :order_items, @edit_facade.first_course_item do |s|
     .field
       = s.input :food_item_id, label: "First", input_html: { class: "ui selection dropdown" }, prompt: 'Select',
-                              collection: FoodItem.where(daily_menu: params[:daily_menu_id], course: "first_course")
+                              collection: @edit_facade.food_items_collection("first_course")
     .ui.checkbox 
       = s.input :_destroy, as: :boolean, label: "Remove item"
 .ui.vertical.segment
-  = f.simple_fields_for :order_items, @main_course  do |s|
+  = f.simple_fields_for :order_items, @edit_facade.main_course_item  do |s|
     .field
       = s.input :food_item_id, label: "Main", input_html: { class: "ui selection dropdown" }, prompt: 'Select',
-                              collection: FoodItem.where(daily_menu: params[:daily_menu_id], course: "main_course")
+                              collection: @edit_facade.food_items_collection("main_course")
     .ui.checkbox   
       = s.input :_destroy, as: :boolean, label: "Remove item"
 .ui.vertical.segment  
-  = f.simple_fields_for :order_items, @drink  do |s|
+  = f.simple_fields_for :order_items, @edit_facade.drink_item  do |s|
     .field
       = s.input :food_item_id, label: "Drink", input_html: { class: "ui selection dropdown" }, prompt: 'Select',
-                              collection: FoodItem.where(daily_menu: params[:daily_menu_id], course: "drink")
-    .ui.checkbox  
+                              collection: @edit_facade.food_items_collection("drink")
       = s.input :_destroy, as: :boolean, label: "Remove item"
