@@ -3,7 +3,7 @@ module DailyMenus
     attr_reader :daily_menu, :current_user
     
     def initialize(daily_menu, current_user)
-      @daily_menu = daily_menu
+      @daily_menu = daily_menu.decorate
       @current_user = current_user
     end
 
@@ -16,7 +16,7 @@ module DailyMenus
     end
 
     def user_order_items
-      @user_order_items ||= user_order&.food_items.decorate
+      @user_order_items ||= user_order&.food_items&.decorate
     end
   end
 end

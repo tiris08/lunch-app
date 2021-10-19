@@ -1,5 +1,6 @@
 class DailyMenuDecorator < ApplicationDecorator
   decorates_association :orders
+  decorates_association :food_items
   
   def formatted_created_at
     created_at.strftime("%d %b %Y")
@@ -16,6 +17,10 @@ class DailyMenuDecorator < ApplicationDecorator
   def created_at_day_month
     created_at.strftime("%b %d")
   end
+
+  def sorted_by_course_items
+   food_items.order(:course)
+  end
   
   def active_unactive_menu_link
     if h.current_user
@@ -31,6 +36,12 @@ class DailyMenuDecorator < ApplicationDecorator
                                 class: "ui bottom attached blue button" 
     else 
       h.link_to 'History', h.daily_menu_path(menu), class: "ui bottom attached button" 
+    end
+  end
+
+  def admin_edit_link
+    if h.current_user.is_admin? && created_at.today? 
+      h.link_to "Edit", h.edit_admin_daily_menu_path
     end
   end
 end
