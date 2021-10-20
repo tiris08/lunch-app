@@ -3,7 +3,7 @@ module Orders
     attr_reader :order
     
     def initialize(order)
-      @order = order
+      @order = order.decorate
     end
     
     def user_order_cost

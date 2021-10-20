@@ -10,6 +10,10 @@ class OrderDecorator < ApplicationDecorator
     h.l created_at
   end
 
+  def todays_order?
+    created_at.today?  
+  end
+
   def cost
     h.number_to_currency(food_items.pluck(:price).sum)
   end

@@ -23,7 +23,7 @@
               %th.right.aligned Total cost
               %th
                 = @facade.user_order_cost
-        - if @order.created_at.today?
+        - if @facade.order.todays_order?
           .ui.two.buttons
             = link_to "Edit", edit_daily_menu_order_path(@order.daily_menu, @order), 
                                                                             class: "ui primary mini button"
