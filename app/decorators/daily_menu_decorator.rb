@@ -3,19 +3,19 @@ class DailyMenuDecorator < ApplicationDecorator
   decorates_association :food_items
   
   def formatted_created_at
-    created_at.strftime("%d %b %Y")
+    h.l created_at
   end
 
   def formatted_created_at_long
-    created_at.strftime("%A %d %b %Y")
+    h.l created_at, format: :full
   end
 
   def created_at_day 
-    created_at.strftime("%A")
+    h.l created_at, format: :day
   end
 
   def created_at_day_month
-    created_at.strftime("%b %d")
+    h.l created_at, format: :day_month
   end
 
   def sorted_by_course_items

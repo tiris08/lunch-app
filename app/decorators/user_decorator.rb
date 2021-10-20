@@ -2,10 +2,10 @@ class UserDecorator < ApplicationDecorator
   decorates_association :orders
   
   def joined_in_date
-    created_at.strftime("%d %b %Y")
+    h.l created_at
   end
 
   def last_order_date
-    orders.present? ? orders.last.created_at.strftime("%d %b %Y") : "No orders yet"
+    orders.present? ? h.l(orders.last.created_at) : "No orders yet"
   end
 end
