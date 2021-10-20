@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @user_orders = Order.where(user: current_user).decorate
+    @user_orders = Order.where(user: current_user).order(created_at: :desc).decorate
   end
 
   def show
