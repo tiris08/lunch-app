@@ -9,7 +9,7 @@
         - @facade.menu_orders.each do |order|
           %tr
             %td 
-              = link_to order.user.name, admin_user_path(order.user)
+              = link_to order.user_name, admin_user_path(order.user)
             %td 
               = order.food_items_humanized
             %td  
