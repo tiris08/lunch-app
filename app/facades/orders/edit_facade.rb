@@ -16,7 +16,7 @@ module Orders
     end
 
     def first_course_item
-      @new_first_course_item ||=  order.order_items.find_or_initialize_by(food_item: order.food_items
+      @new_first_course_item ||= order.order_items.find_or_initialize_by(food_item: order.food_items
                                                                                            .find_by(course: "first_course"))
 
     end

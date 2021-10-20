@@ -9,6 +9,10 @@ module Admin
         @daily_menu = daily_menu
       end
 
+      def decorated_daily_menu
+        daily_menu.decorate
+      end
+
       def orders_size
         @orders_size ||= daily_menu.orders.size
       end

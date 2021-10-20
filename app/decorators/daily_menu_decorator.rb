@@ -1,7 +1,7 @@
 class DailyMenuDecorator < ApplicationDecorator
   decorates_association :orders
   decorates_association :food_items
-  
+ 
   def formatted_created_at
     h.l created_at
   end
@@ -40,8 +40,7 @@ class DailyMenuDecorator < ApplicationDecorator
   end
 
   def admin_edit_link
-    if h.current_user.is_admin? && created_at.today? 
-      h.link_to "Edit", h.edit_admin_daily_menu_path
-    end
+    return unless h.current_user.is_admin? && created_at.today?
+    h.link_to "Edit", h.edit_admin_daily_menu_path
   end
 end

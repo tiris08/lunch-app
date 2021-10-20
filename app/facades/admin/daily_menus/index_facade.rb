@@ -16,7 +16,7 @@ module Admin
 
       def edit_or_create_menu_link
         if DailyMenu.last&.created_at&.today?
-          link_to "Edit a menu for today ", edit_admin_daily_menu_path(DailyMenu.last), class: "ui primary large button"
+          link_to "Edit a menu for today", edit_admin_daily_menu_path(DailyMenu.last), class: "ui primary large button"
         else
           link_to "Create a menu for today", new_admin_daily_menu_path, class: "ui primary large button" 
         end
