@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   root 'daily_menus#index'
 
   resources :daily_menus, only: [:index, :show] do
-    resources :orders
+    resources :orders, except: [:index, :show]
   end
   
+  resources :orders, only: [:index, :show]
+
   namespace :admin do
     root 'daily_menus#index'
     resources :daily_menus

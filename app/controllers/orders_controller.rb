@@ -1,15 +1,24 @@
 class OrdersController < ApplicationController
   before_action :verify_is_not_admin!
-  before_action :find_order, only:[:update, :destroy, :edit]
+  before_action :find_order, only:[:update, :destroy, :edit, :show]
+  
   def new
     @order = Order.new
     @facade = Orders::NewFacade.new(@order, params)
   end
 
+  def index
+    @user_orders = Order.where(user: current_user).decorate
+  end
+
+  def show
+    @facade = Orders::ShowFacade.new(@order)
+  end
+
   def create
     @order = Order.new(order_params)
     if @order.save
-      redirect_to daily_menu_path(@order.daily_menu), notice: "Your order was successfully created"
+      redirect_to order_path(@order), notice: "Your order was successfully created"
     else
       @facade = Orders::NewFacade.new(@order, params)
       flash.now[:alert] = "Try again. You have to select all three courses"
@@ -23,7 +32,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      redirect_to daily_menu_path(@order.daily_menu), notice: "Your order has been succesfully updated!"
+      redirect_to order_path(@order), notice: "Your order has been succesfully updated!"
     else
       @facade = Orders::EditFacade.new(@order, params)
       flash.now[:alert] = "Try again. You have to select all three courses"
