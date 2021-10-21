@@ -7,11 +7,11 @@ module Orders
     end
     
     def user_order_cost
-      @user_order_cost ||= order&.food_items&.pluck(:price)&.sum
+      @user_order_cost ||= order.food_items&.pluck(:price)&.sum
     end
     
     def user_order_items
-      @user_order_items ||= order&.food_items.decorate
+      @user_order_items ||= order.food_items.decorate
     end
   end
 end
