@@ -8,9 +8,9 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   private
-  
+
   def set_admin
-    self.is_admin = User.count == 0
+    self.is_admin = User.count.zero?
   end
 
   def self.from_omniauth(access_token)
@@ -18,12 +18,9 @@ class User < ApplicationRecord
     user = User.where(email: data['email']).first
 
     # Uncomment the section below if you want users to be created if they don't exist
-    unless user
-        user = User.create(name: data['name'],
-           email: data['email'],
-           password: Devise.friendly_token[0,20]
-        )
-    end
+    user ||= User.create(name:     data['name'],
+                         email:    data['email'],
+                         password: Devise.friendly_token[0, 20])
     user
-end
+  end
 end

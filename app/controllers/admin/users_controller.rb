@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::BaseController
   before_action :find_user, only: [:show]
   decorates_assigned :user, :users
-  
+
   def index
     @users = User.all
   end

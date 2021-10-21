@@ -2,7 +2,7 @@ module Users
   class ShowFacade
     include ActionView::Helpers::NumberHelper
     attr_reader :user
-    
+
     def initialize(user)
       @user = user
     end
