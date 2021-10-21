@@ -9,6 +9,10 @@ module Admin
         @params = params
       end
 
+      def decorated_user
+        @decorated_user ||= user.decorate
+      end
+
       def user_total_spending
         @user_total_spending ||= number_to_currency(user.orders.includes(:food_items).pluck(:price).sum)
       end

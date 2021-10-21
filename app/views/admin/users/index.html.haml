@@ -10,7 +10,7 @@
               %th Registered at
               %th Last order
           %tbody
-            - users.each do |user|
+            - @facade.paginated_users.each do |user|
               %tr
                 %td
                   = link_to user.name, admin_user_path(user)
@@ -20,3 +20,6 @@
                   = user.joined_in_date
                 %td
                   = user.last_order_date
+      .ui.grid
+        .celled.center.aligned.column
+          = paginate @facade.paginated_users
