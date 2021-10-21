@@ -10,6 +10,7 @@ AllCops:
     - 'bin/**/*'
     - 'db/schema.rb'
     - 'tmp/**/*'
+    - 'db/seeds.rb'
 
 Style/Documentation:
   Enabled: false
