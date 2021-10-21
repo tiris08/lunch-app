@@ -1,6 +1,6 @@
 - if page.current?
   = link_to url, title: page, class: 'item active', remote: remote do
-    = page
+    = @facade.paginated_daily_menus.navigation_dates
 - else
   = link_to url, title: page, class: 'item', remote: remote do
     = page

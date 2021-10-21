@@ -15,5 +15,5 @@
             = menu.active_unactive_menu_link
       .one.column.row
         .celled.center.aligned.column
-          = paginate @facade.paginated_daily_menus
+          = paginate @facade.paginated_daily_menus, views_prefix: 'daily_menus', window: 0
           
