@@ -5,20 +5,20 @@
       %tr 
         %td Name:
         %td
-          = @user.name
+          = user.name
       %tr
         %td Email:
         %td
-          = @user.email
+          = user.email
       %tr 
         %td Joined in 
         %td 
-          = @user.created_at.strftime("%d %b %Y")
+          = user.joined_in_date
       %tr 
         %td Total amount of orders:
         %td 
-          = @user_total_orders
+          = @facade.user_total_orders
       %tr 
         %td Total spent:
         %td  
-          = "#{@user_total_spendings}$" 
+          = @facade.user_total_spending

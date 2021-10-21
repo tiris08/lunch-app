@@ -1,25 +1,20 @@
 .ui.container
   .ui.vertical.segment
-    - if DailyMenu.last&.created_at&.today?
-      = link_to "Edit a menu for today ", edit_admin_daily_menu_path(DailyMenu.last), class: "ui labaled blue large button"
-    - else
-      = link_to new_admin_daily_menu_path, class: "ui labaled blue large button" do
-        %i.icon.plus 
-        Create a menu for today 
+    = @facade.edit_or_create_menu_link
   .ui.vertical.segment
     .ui.five.column.grid
-      - @daily_menus.reverse.each do |menu|
+      - @facade.paginated_daily_menus.reverse.each do |menu|
         .column 
           .ui.fluid.link.card 
             .content 
               .header
-                = menu.created_at.strftime("%A")
+                = menu.created_at_day
               .description
-                = menu.created_at.strftime("%d %b %Y")
+                = menu.formatted_created_at
                 %br/
                 %br/
             = link_to 'History', admin_daily_menu_path(menu), class: "ui bottom attached button" 
       .one.column.row
         .center.aligned.column
-          = paginate @daily_menus
+          = paginate @facade.paginated_daily_menus
           

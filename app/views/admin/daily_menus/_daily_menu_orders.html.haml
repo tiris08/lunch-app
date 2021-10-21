@@ -6,13 +6,12 @@
         %th Menu items
         %th Total cost
       %tbody
-        - @daily_menu.orders.each do |order|
+        - @facade.menu_orders.each do |order|
           %tr
             %td 
-              = link_to "#{order.user.name}", admin_user_path(order.user)
+              = link_to order.user_name, admin_user_path(order.user)
             %td 
-              - order.food_items.each_with_index do |item, index| 
-                = index == order.food_items.size - 1 ? "#{item.name}." : "#{item.name}," 
+              = order.food_items_humanized
             %td  
-              = order.food_items.pluck(:price).sum
+              = order.cost
               

@@ -1,0 +1,33 @@
+.ui.container
+  .ui.one.column.grid
+    .column
+      %h1.ui.center.aligned.header Your order
+      .ui.segment
+        %table.ui.very.basic.celled.table
+          %thead
+            %tr
+              %th Order items
+              %th Price
+          %tbody
+            - @facade.user_order_items.each do |item|
+              %tr
+                %td
+                  %h4.ui.header
+                    = item.name
+                    .sub.header
+                      = item.humanized_course
+                %td
+                  = item.price
+          %tfoot 
+            %tr 
+              %th.right.aligned Total cost
+              %th
+                = @facade.user_order_cost
+        - if @facade.order.todays_order?
+          .ui.two.buttons
+            = link_to "Edit", edit_daily_menu_order_path(@order.daily_menu, @order), 
+                                                                            class: "ui primary mini button"
+            = link_to "Cancel my order", daily_menu_order_path(@order.daily_menu, @order), 
+                                                            method: :delete,   
+                                                            class: "ui mini button",
+                                                            data: { confirm_swal: 'Are you sure?' }

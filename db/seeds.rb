@@ -15,18 +15,44 @@
 #   # imitate history of created menues on working days only
 #   time = 2.month.ago + day.day
 #   if time.on_weekday? && !(time > Time.now)
-#     menu = DailyMenu.create(created_at: time)
-#     3.times do 
-#       name = Faker::Food.dish
-#       price = Faker::Commerce.price(range: 5..10)
-#       menu.food_items.create(name: name, price: price, course: 0)
-#       name = Faker::Food.dish
-#       price = Faker::Commerce.price(range: 7..10)
-#       menu.food_items.create(name: name, price: price, course: 1)
-#       name = drinks.sample
-#       price = Faker::Commerce.price(range: 2..5)
-#       menu.food_items.create(name: name, price: price, course: 2)
-#     end
+#     menu = DailyMenu.create(created_at: time, food_items_attributes: { "0": { name: Faker::Food.dish,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 0},
+#                                                                       "1": { name: Faker::Food.dish,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 0}, 
+#                                                                       "2": { name: Faker::Food.dish,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 0},
+#                                                                       "3": { name: Faker::Food.dish,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 1},
+#                                                                       "4": { name: Faker::Food.dish,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 1},
+#                                                                       "5": { name: Faker::Food.dish,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 1},
+#                                                                       "6": { name: drinks.sample,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 2},
+#                                                                       "7": { name: drinks.sample,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 2},
+#                                                                       "8": { name: drinks.sample,
+#                                                                             price: Faker::Commerce.price(range: 5..10),
+#                                                                             course: 2}})
+#     # 3.times do 
+#     #   name = Faker::Food.dish
+#     #   price = Faker::Commerce.price(range: 5..10)
+#     #   menu.food_items.create(name: name, price: price, course: 0)
+#     #   name = Faker::Food.dish
+#     #   price = Faker::Commerce.price(range: 7..10)
+#     #   menu.food_items.create(name: name, price: price, course: 1)
+#     #   name = drinks.sample
+#     #   price = Faker::Commerce.price(range: 2..5)
+#     #   menu.food_items.create(name: name, price: price, course: 2)
+#     # end
 #   end
 # end
 
@@ -42,7 +68,7 @@
 # 18.times do |number|
 #   user = User.find(number + 2)
 #   20.times do |n|
-#     menu = DailyMenu.find(45 - n)
+#     menu = DailyMenu.find(44 - n)
 #     order = Order.new(user_id: user.id, daily_menu_id: menu.id)
 #     3.times do |num|
 #       food_item = menu.food_items[num] 

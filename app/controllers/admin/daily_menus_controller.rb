@@ -1,10 +1,12 @@
 class Admin::DailyMenusController < Admin::BaseController
+  before_action :find_daily_menu, only: [:show, :edit, :update]
+  
   def index
-    @daily_menus = DailyMenu.order(created_at: :desc).page(params[:page])
+    @facade = Admin::DailyMenus::IndexFacade.new(params)
   end
 
   def show
-    @daily_menu = DailyMenu.find(params[:id])
+    @facade = Admin::DailyMenus::ShowFacade.new(@daily_menu)
   end
 
   def new
@@ -17,19 +19,19 @@ class Admin::DailyMenusController < Admin::BaseController
     if @daily_menu.save
       redirect_to admin_daily_menu_path(@daily_menu), notice: "Menu created!"
     else
+      flash.now[:alert] = "Try again. Your menu should include at least one valid item"
       render :new
     end
   end
 
   def edit
-    @daily_menu = DailyMenu.find(params[:id])
   end
 
   def update
-    @daily_menu = DailyMenu.find(params[:id])
     if @daily_menu.update(daily_menu_params)
       redirect_to admin_daily_menu_path(@daily_menu), notice: "Menu updated!"
     else
+      flash.now[:alert] = "Try again. Your menu should include at least one valid item" 
       render :edit
     end
   end
@@ -38,6 +40,10 @@ class Admin::DailyMenusController < Admin::BaseController
 
   def daily_menu_params
     params.require(:daily_menu).permit(food_items_attributes:[:id, :name, :price, :course, :_destroy])
+  end
+
+  def find_daily_menu
+    @daily_menu = DailyMenu.find(params[:id])
   end
   
 end 

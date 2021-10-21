@@ -1,7 +1,5 @@
 .ui.container
-  .ui.two.column.grid
+  .ui.one.column.grid
     .column
-      = render 'user_order_items'
-    .column
-      = render 'shared/menu_list', menu: @daily_menu
+      = render 'shared/menu_list', menu: daily_menu
     
