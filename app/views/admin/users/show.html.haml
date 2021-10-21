@@ -4,5 +4,5 @@
       = render "user_info"
     .column
       %h1.ui.center.aligned.header Orders
-      = render "shared/orders_list", orders: user.orders
+      = render "shared/orders_list", orders: @facade.paginated_user_orders
                 

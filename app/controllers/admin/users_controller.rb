@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @facade = Users::ShowFacade.new(@user)
+    @facade = Admin::Users::ShowFacade.new(@user, params)
   end
 
   private
