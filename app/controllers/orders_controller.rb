@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @user_orders = Order.where(user: current_user).order(created_at: :desc).decorate
+    @facade = Orders::IndexFacade.new(current_user, params)
   end
 
   def show
