@@ -11,7 +11,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def todays_order?
-    created_at.today?  
+    created_at.today?
   end
 
   def cost

@@ -1,0 +1,53 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops: 
+  NewCops: enable
+  TargetRubyVersion: 3.0.2
+  Exclude:
+    - '.bundle/**/*'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'tmp/**/*'
+    - 'db/seeds.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/BlockLength:
+  Enabled: false
+
+Layout/HashAlignment:
+  EnforcedColonStyle:      table
+  EnforcedHashRocketStyle: table
+
+Layout/LineLength:
+  Max: 100
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Lint/AmbiguousOperator:
+  Enabled: false
+
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/EmptyCaseCondition:
+  Enabled: false

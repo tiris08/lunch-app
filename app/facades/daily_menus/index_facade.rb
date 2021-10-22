@@ -7,7 +7,7 @@ module DailyMenus
     end
 
     def paginated_daily_menus
-      @daily_menus ||= DailyMenu.order(created_at: :desc).page(params[:page]).decorate
+      @paginated_daily_menus ||= DailyMenu.order(created_at: :desc).page(params[:page]).decorate
     end
   end
 end

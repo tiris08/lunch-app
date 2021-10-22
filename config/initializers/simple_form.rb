@@ -1,4 +1,3 @@
-
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
@@ -6,7 +5,8 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input, hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+  config.wrappers :default, class: :input, hint_class: :field_with_hint,
+error_class: :field_with_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -51,7 +51,8 @@ SimpleForm.setup do |config|
 
   # Custom Semantic Wrapper
   # Values are similar to the default wrapper above, with different classes
-  config.wrappers :semantic, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+  config.wrappers :semantic, tag: 'div', class: 'field', error_class: 'error',
+hint_class: 'with_hint' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -62,27 +63,30 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'div', class: 'ui red pointing above label error' }
   end
 
-  config.wrappers :ui_checkbox, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+  config.wrappers :ui_checkbox, tag: 'div', class: 'field', error_class: 'error',
+hint_class: 'with_hint' do |b|
     b.use :html5
     b.wrapper tag: 'div', class: 'ui checkbox' do |input|
       input.use :label_input
-      input.use :hint,  wrap_with: { tag: 'div', class: 'hint' }
+      input.use :hint, wrap_with: { tag: 'div', class: 'hint' }
     end
   end
 
-  config.wrappers :ui_slider_checkbox, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+  config.wrappers :ui_slider_checkbox, tag: 'div', class: 'field', error_class: 'error',
+hint_class: 'with_hint' do |b|
     b.use :html5
     b.wrapper tag: 'div', class: 'ui slider checkbox' do |input|
       input.use :label_input
-      input.use :hint,  wrap_with: { tag: 'div', class: 'hint' }
+      input.use :hint, wrap_with: { tag: 'div', class: 'hint' }
     end
   end
 
-  config.wrappers :ui_toggle_checkbox, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+  config.wrappers :ui_toggle_checkbox, tag: 'div', class: 'field', error_class: 'error',
+hint_class: 'with_hint' do |b|
     b.use :html5
     b.wrapper tag: 'div', class: 'ui toggle checkbox' do |input|
       input.use :label_input
-      input.use :hint,  wrap_with: { tag: 'div', class: 'hint' }
+      input.use :hint, wrap_with: { tag: 'div', class: 'hint' }
     end
   end
 
@@ -135,7 +139,7 @@ SimpleForm.setup do |config|
 
   # How the label text should be generated altogether with the required text.
   # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
-  config.label_text = lambda { |label, required, explicit_label| "#{label}" }
+  config.label_text = ->(label, _required, _explicit_label) { label.to_s }
   # Semantic UI has its own astrick
 
   # You can define the class to use on all labels. Default is nil.

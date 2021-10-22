@@ -3,7 +3,7 @@ module Admin
     class ShowFacade
       include ActionView::Helpers::NumberHelper
       attr_reader :user, :params
-      
+
       def initialize(user, params)
         @user = user
         @params = params
@@ -14,7 +14,10 @@ module Admin
       end
 
       def user_total_spending
-        @user_total_spending ||= number_to_currency(user.orders.includes(:food_items).pluck(:price).sum)
+        @user_total_spending ||= number_to_currency(user.orders
+                                                        .includes(:food_items)
+                                                        .pluck(:price)
+                                                        .sum)
       end
 
       def user_total_orders
