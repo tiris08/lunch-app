@@ -13,7 +13,7 @@ class DailyMenusController < ApplicationController
   private
 
   def verify_is_not_admin!
-    redirect_to admin_root_path, alert: "You don't belong there" if current_user&.is_admin?
+    redirect_to admin_root_path, alert: 'You don\'t belong there' if current_user&.is_admin?
   end
 
   def find_daily_menu
