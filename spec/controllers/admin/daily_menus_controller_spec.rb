@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Admin::DailyMenusController, type: :controller do
   
   describe "unathenticated user" do 
-    
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     
     describe "GET /index" do
       it "redirects to login page with alert flash" do 
@@ -57,7 +57,8 @@ RSpec.describe Admin::DailyMenusController, type: :controller do
 
   describe "authorized user" do 
     
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     let(:user) {create(:user)}
     
     before do
@@ -116,7 +117,8 @@ RSpec.describe Admin::DailyMenusController, type: :controller do
 
   describe "authorized admin" do 
     
-    let(:daily_menu) { create(:daily_menu)  }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     let(:user) { create(:user) }
 
     before do
@@ -129,11 +131,6 @@ RSpec.describe Admin::DailyMenusController, type: :controller do
       it "renders index page" do 
         get :index
         expect(response).to render_template(:index) 
-      end
-      
-      it "assigns @daily_menus" do
-        get :index
-        expect(assigns(:daily_menus)).to eq([daily_menu])
       end
     end
 
@@ -206,20 +203,19 @@ RSpec.describe Admin::DailyMenusController, type: :controller do
 
     describe "PATCH /update" do
       
-      let(:daily_menu) { create(:daily_menu) }
-
-      before do
-        create(:food_item, name: "new", daily_menu: daily_menu)
-      end
+      let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+      let!(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
       
       context "add/delete associated food_items" do
         
-        let(:deleted_food_item) { attributes_for(:food_item, _destroy: true, id: daily_menu.food_items.first) }
         let(:new_food_item) { attributes_for(:food_item) }
-        
+
         it "removes food_item from db" do
-          patch :update, params: { id: daily_menu, daily_menu: { food_items_attributes: [deleted_food_item] }}
-          expect(daily_menu.food_items.size).to eq(0)
+          update_attr = daily_menu.food_items[0].attributes.merge!(_destroy: 1)
+          patch :update, params: { id: daily_menu, 
+                                   daily_menu: { food_items_attributes: update_attr}}
+          daily_menu.reload
+          expect(daily_menu.food_items.size).to eq(2)
         end
         
         it "adds new food_item to db" do
@@ -231,16 +227,17 @@ RSpec.describe Admin::DailyMenusController, type: :controller do
   
       context "valid food_item data" do
         
-        let(:valid_food_item) { attributes_for(:food_item, name: "super new", id: daily_menu.food_items.first) }
-
-        it "redirects to admin_daily_menu_path(@daily_menu)" do 
-          patch :update, params: { id: daily_menu, daily_menu: { food_items_attributes: [valid_food_item] }}
-          expect(response).to redirect_to(admin_daily_menu_path(daily_menu))
-        end
-
         it "updates food_item" do
+          daily_menu.food_items.first.name = "super new"
+          valid_food_item = daily_menu.food_items.first.attributes
           patch :update, params: { id: daily_menu, daily_menu: { food_items_attributes: [valid_food_item] }}
           expect(daily_menu.food_items.first.name).to eq("super new")  
+        end
+
+        it "redirects to admin_daily_menu_path(@daily_menu)" do   
+          valid_food_item = daily_menu.food_items[0].attributes['name'] = "super new"
+          patch :update, params: { id: daily_menu, daily_menu: { food_items_attributes: [valid_food_item] }}
+          expect(response).to redirect_to(admin_daily_menu_path(daily_menu))
         end
       end
 

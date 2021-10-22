@@ -50,9 +50,10 @@ RSpec.feature 'Users', type: :feature do
   describe "user" do
     
     let!(:user) { create(:random_user) }
-    let!(:menu1) { create(:menu_with_items, created_at: 2.day.ago) }
-    let!(:menu2) { create(:menu_with_items, created_at: 1.day.ago) }
-    let!(:menu3) { create(:menu_with_items) }
+    let!(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let!(:menu1) { create(:daily_menu, created_at: 2.day.ago, food_items_attributes: food_items_attributes) }
+    let!(:menu2) { create(:daily_menu, created_at: 1.day.ago, food_items_attributes: food_items_attributes) }
+    let!(:menu3) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     before do
       user.update(is_admin: false)
       sign_in(user)
@@ -82,13 +83,14 @@ RSpec.feature 'Users', type: :feature do
       expect(page).to have_content("Chicken")
     end
 
-    scenario "can see his order for the particular day" do
+    scenario "can see his ordes" do
       pizza = create(:food_item, daily_menu: menu1, name: 'Pizza')
       order = build(:order, daily_menu: menu1, user: user)
       order.order_items.build(food_item: pizza)
       order.save
       visit root_path
-      find('.ui.link.card', text: menu1.created_at.strftime('%A')).click_link('History')
+      click_link 'My orders'
+      click_link(I18n.l order.created_at)
       within('.column', text: 'Your order', match: :first) do
         page.assert_text('Pizza')
         page.assert_text('Order items')
@@ -100,8 +102,9 @@ RSpec.feature 'Users', type: :feature do
 
     let!(:admin) { create(:user) }
     let!(:users) { create_list(:random_user, 10)}
-    let!(:menu1) { create(:menu_with_items, created_at: 2.day.ago) }
-    let!(:menu2) { create(:menu_with_items, created_at: 1.day.ago) }
+    let!(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let!(:menu1) { create(:daily_menu, created_at: 2.day.ago, food_items_attributes: food_items_attributes) }
+    let!(:menu2) { create(:daily_menu, created_at: 1.day.ago, food_items_attributes: food_items_attributes) }
     
     before do
       sign_in(admin)

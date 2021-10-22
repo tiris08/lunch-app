@@ -29,7 +29,8 @@ RSpec.feature 'DailyMenu', type: :feature do
     end
     
     scenario "updates existing menu items", js: true do
-      menu = create(:menu_with_items)
+      food_items_attributes = attributes_for_list(:food_item, 3)
+      create(:daily_menu, food_items_attributes: food_items_attributes) 
       visit admin_root_path
       click_link('Edit a menu for today')
       fill_in "Name", with: "Pizza", match: :first
@@ -40,17 +41,14 @@ RSpec.feature 'DailyMenu', type: :feature do
     end
 
     scenario "adds new items to the menu", js: true do
-      menu = create(:menu_with_items)
+      food_items_attributes = attributes_for_list(:food_item, 3)
+      create(:daily_menu, food_items_attributes: food_items_attributes) 
       visit admin_root_path
       click_link('Edit a menu for today')
       click_link('Add item')
-      within all('.input.string.required.daily_menu_food_items_name').last do 
+      within(:xpath, '//*[@id="food_items"]/div/div[1]/div') do
         fill_in "Name", with: "Pizzza"
-      end
-      within all('.input.decimal.required.daily_menu_food_items_price').last do 
         fill_in "Price", with: 6
-      end
-      within all('.input.radio_buttons.required.daily_menu_food_items_course').last do 
         page.choose('First',  allow_label_click: true)
       end
       click_button("Update")
@@ -60,14 +58,15 @@ RSpec.feature 'DailyMenu', type: :feature do
     end
 
     scenario "removes existing menu items", js: true do
-      menu = create(:menu_with_items, items_count: 6)
+      food_items_attributes = attributes_for_list(:food_item, 3)
+      create(:daily_menu, food_items_attributes: food_items_attributes) 
       visit admin_root_path
       click_link('Edit a menu for today')
       click_link('Remove item', match: :first)
       click_button("Update")
       page.assert_text("Menu updated!")
       find('.item', text: 'Menu list').click
-      page.assert_selector('.ui.header', count: 5)
+      page.assert_selector('.ui.header', count: 2)
     end
   end
 end

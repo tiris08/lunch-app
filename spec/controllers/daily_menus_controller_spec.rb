@@ -3,7 +3,8 @@ RSpec.describe DailyMenusController do
   
   describe "unauthorized user" do
     
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
 
     describe "GET /index" do
       
@@ -24,7 +25,8 @@ RSpec.describe DailyMenusController do
 
   describe "authorized admin" do
     
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     let(:user) { create(:user) }
     
     before do
@@ -51,7 +53,8 @@ RSpec.describe DailyMenusController do
 
   describe "authorized user" do 
     
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     let(:user) { create(:user) }
     
     before do
@@ -64,11 +67,6 @@ RSpec.describe DailyMenusController do
       it "renders index" do 
         get :index
         expect(response).to render_template(:index) 
-      end
-
-      it "assigns @daily_menus" do
-        get :index
-        expect(assigns(:daily_menus)).to eq([daily_menu]) 
       end
     end
 

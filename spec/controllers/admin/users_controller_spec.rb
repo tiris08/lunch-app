@@ -53,7 +53,8 @@ RSpec.describe Admin::UsersController, type: :controller do
     
     describe "authorized admin" do
     
-      let(:daily_menu) { create(:daily_menu) }
+      let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+      let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
       let(:admin) { create(:user)}
       let(:user) { create(:random_user) }
   

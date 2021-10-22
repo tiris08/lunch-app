@@ -4,7 +4,8 @@ RSpec.describe OrdersController, type: :controller do
   
   context "unathenticated user" do 
     
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     let(:first_course) {create(:food_item, daily_menu: daily_menu, course: 0)}
     let(:main_course) {create(:food_item, daily_menu: daily_menu, course: 1)}
     let(:drink) {create(:food_item, daily_menu: daily_menu, course: 2)}
@@ -64,7 +65,8 @@ RSpec.describe OrdersController, type: :controller do
 
   context "authorized admin:user" do 
     
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     let(:first_course) {create(:food_item, daily_menu: daily_menu, course: 0)}
     let(:main_course) {create(:food_item, daily_menu: daily_menu, course: 1)}
     let(:drink) {create(:food_item, daily_menu: daily_menu, course: 2)}
@@ -124,7 +126,8 @@ RSpec.describe OrdersController, type: :controller do
   
   context "authorized user" do 
 
-    let(:daily_menu) { create(:daily_menu) }
+    let(:food_items_attributes) { attributes_for_list(:food_item, 3)}
+    let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
     let(:first_course) {create(:food_item, daily_menu: daily_menu, course: 0)}
     let(:main_course) {create(:food_item, daily_menu: daily_menu, course: 1)}
     let(:drink) {create(:food_item, daily_menu: daily_menu, course: 2)}
@@ -184,7 +187,7 @@ RSpec.describe OrdersController, type: :controller do
                                   user_id: user,
                                   order_items_attributes: [attributes_for(:order_item, 
                                                                           food_item_id: first_course)]}}
-          expect(response).to redirect_to(daily_menu_path(daily_menu))  
+          expect(response).to redirect_to(order_path(user.orders.find_by(daily_menu: daily_menu)))  
         end
 
         it "creates new order_items in database" do
@@ -232,7 +235,7 @@ RSpec.describe OrdersController, type: :controller do
                                   order: {order_items_attributes: { "0": {id: order.order_items[0], food_item_id: new_first_course},
                                                                     "1": {id: order.order_items[1], food_item_id: new_main_course},
                                                                     "2": {id: order.order_items[2], food_item_id: new_drink}}}}
-          expect(response).to redirect_to(daily_menu_path(daily_menu)) 
+          expect(response).to redirect_to(order_path(order)) 
         end
   
         it "updates order items in database" do
