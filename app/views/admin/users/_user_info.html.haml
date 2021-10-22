@@ -5,15 +5,15 @@
       %tr 
         %td Name:
         %td
-          = user.name
+          = @facade.user.name
       %tr
         %td Email:
         %td
-          = user.email
+          = @facade.user.email
       %tr 
         %td Joined in 
         %td 
-          = user.joined_in_date
+          = @facade.decorated_user.joined_in_date
       %tr 
         %td Total amount of orders:
         %td 
