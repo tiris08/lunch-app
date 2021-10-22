@@ -34,6 +34,7 @@ gem 'rexml', '~> 3.2.4'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'figaro'
+gem 'draper'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

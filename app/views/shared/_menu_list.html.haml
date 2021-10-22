@@ -1,23 +1,22 @@
 - unless current_user.is_admin?
   %h1.ui.center.aligned.header
-    = "Menu list on #{menu.created_at.strftime("%A %d %b %Y")}"
+    = "Menu list on #{menu.formatted_created_at_long}"
 .ui.segment
   %table.ui.very.basic.table
     %thead
       %tr
         %th 
           Menu items
-          - if current_user.is_admin? && @daily_menu.created_at.today? 
-            = link_to "Edit", edit_admin_daily_menu_path(@daily_menu)
+          = menu.admin_edit_link
         %th Price
     %tbody
-      - menu.food_items.order(:course).each do |item|
+      - menu.sorted_by_course_items.each do |item|
         %tr
           %td
             %h4.ui.header
               = item.name
               .sub.header
-                = item.course.humanize
+                = item.humanized_course
           %td
             = item.price
             

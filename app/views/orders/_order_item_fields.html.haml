@@ -1,6 +1,20 @@
-.nested-fields.column 
-  .ui.segment
+.ui.vertical.segment
+  = f.simple_fields_for :order_items, @facade.first_course_item do |s|
     .field
-      = f.input :food_item_id, include_blank: true,
-                                collection: group_food_itmes_by_course(@order),  as: :grouped_select, group_method: :last
-    = link_to_remove_association "Remove item", f, class: "ui fluid button"
+      = s.input :food_item_id, label: "First", input_html: { class: "ui selection dropdown" }, prompt: 'Select',
+                              collection: @facade.food_items_collection("first_course")
+    .ui.checkbox 
+      = s.input :_destroy, as: :boolean, label: "Remove item"
+.ui.vertical.segment
+  = f.simple_fields_for :order_items, @facade.main_course_item  do |s|
+    .field
+      = s.input :food_item_id, label: "Main", input_html: { class: "ui selection dropdown" }, prompt: 'Select',
+                              collection: @facade.food_items_collection("main_course")
+    .ui.checkbox   
+      = s.input :_destroy, as: :boolean, label: "Remove item"
+.ui.vertical.segment  
+  = f.simple_fields_for :order_items, @facade.drink_item  do |s|
+    .field
+      = s.input :food_item_id, label: "Drink", input_html: { class: "ui selection dropdown" }, prompt: 'Select',
+                              collection: @facade.food_items_collection("drink")
+      = s.input :_destroy, as: :boolean, label: "Remove item"

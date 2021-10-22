@@ -14,6 +14,7 @@ ActiveStorage.start()
 
 
 import '@doabit/semantic-ui-sass'
+import 'application/sweet-alert-confirm';
 
 $(document).on('turbolinks:load', function() {
   $('.ui.radio.checkbox').checkbox();
@@ -22,23 +23,10 @@ $(document).on('turbolinks:load', function() {
     $(this).closest('.message').transition('fade');
   });
   
-  // order update form
-
-  $('.ui.three.column.grid').on('cocoon:after-insert', function() {
-    check_to_hide_or_show_add_link();
-  });
-  $('.ui.three.column.grid').on('cocoon:after-remove', function() {
-    check_to_hide_or_show_add_link();
-  });
-  check_to_hide_or_show_add_link();
-  function check_to_hide_or_show_add_link() {
-    if ($('.nested-fields.column:visible').length == 3) {
-      $('.ui.primary.labaled.button.nest').hide();
-    } else {
-      $('.ui.primary.labaled.button.nest').show();
-    }
-  }
+  $('select.dropdown')
+  .dropdown()
 })
+
 
 // if you wan't to use custom variables, you should import custom styelesheet
 // import 'stylesheets/semantic-ui.scss'
