@@ -17,5 +17,6 @@
               = order.food_items_humanized
             %td  
               = order.cost
-    .one.column.row
-      .celled.center.aligned.column
+  .ui.grid
+    .celled.center.aligned.column
+      = paginate orders

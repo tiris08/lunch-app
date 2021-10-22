@@ -16,5 +16,5 @@
             = link_to 'History', admin_daily_menu_path(menu), class: "ui bottom attached button" 
       .one.column.row
         .center.aligned.column
-          = paginate @facade.paginated_daily_menus
+          = paginate @facade.paginated_daily_menus, views_prefix: 'daily_menus', window: 0
           

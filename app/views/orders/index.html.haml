@@ -1,2 +1,2 @@
 .ui.container
-  = render 'shared/orders_list', orders: @user_orders
+  = render 'shared/orders_list', orders: @facade.paginated_user_orders
