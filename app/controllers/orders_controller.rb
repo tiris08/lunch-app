@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :verify_is_not_admin!
   before_action :find_order, only: %i[update destroy edit show]
+  before_action :check_policy
 
   def new
     @order = Order.new
@@ -52,11 +52,11 @@ class OrdersController < ApplicationController
                                   order_items_attributes: %i[id food_item_id order_id _destroy])
   end
 
-  def verify_is_not_admin!
-    redirect_to admin_root_path, alert: "You don't belong there" if current_user&.is_admin?
-  end
-
   def find_order
     @order = Order.find(params[:id])
+  end
+
+  def check_policy
+    authorize(@order || Order)
   end
 end
