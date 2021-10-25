@@ -34,6 +34,7 @@ gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'simple_form'
+gem 'pundit'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
