@@ -30,14 +30,10 @@ gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'figaro'
 gem 'hamlit', '~> 2.15', '>= 2.15.1'
 gem 'hamlit-rails'
-gem 'simple_form'
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
-gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
-gem 'cocoon'
-gem 'rexml', '~> 3.2.4'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'rexml', '~> 3.2.4'
 gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -68,12 +64,12 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
