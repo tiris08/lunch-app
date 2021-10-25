@@ -1,5 +1,6 @@
 class Admin::DailyMenusController < Admin::BaseController
   before_action :find_daily_menu, only: %i[show edit update]
+  before_action :check_policy
 
   def index
     @facade = Admin::DailyMenus::IndexFacade.new(params)
@@ -43,5 +44,9 @@ class Admin::DailyMenusController < Admin::BaseController
 
   def find_daily_menu
     @daily_menu = DailyMenu.find(params[:id])
+  end
+
+  def check_policy
+    authorize(@daily_menu || DailyMenu)
   end
 end
