@@ -1,4 +1,4 @@
-- unless current_user.is_admin?
+- if policy(menu).show?
   %h1.ui.center.aligned.header
     = "Menu list on #{menu.formatted_created_at_long}"
 .ui.segment
