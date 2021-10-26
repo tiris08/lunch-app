@@ -1,0 +1,7 @@
+= "Hi #{@order.user.name}! You got a new order for today from Lunch app!"
+________________________________________________________________________
+Order details: 
+- @order.food_items.each do |item|
+  = "#{item.name} (#{item.course.humanize}) - #{number_to_currency(item.price)}"
+  ________________________________________________________________________
+Bon Appétit!
