@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: %i[update destroy edit show]
   before_action :check_policy
+  before_action :check_if_todays_menu, except: %i[index show]
 
   def new
     @order = Order.new
@@ -58,5 +59,10 @@ class OrdersController < ApplicationController
 
   def check_policy
     authorize(@order || Order)
+  end
+
+  def check_if_todays_menu
+    return if DailyMenu.find(params[:daily_menu_id]).created_at.today?
+    redirect_to root_path, alert: 'You are not allowed to perform this action'
   end
 end

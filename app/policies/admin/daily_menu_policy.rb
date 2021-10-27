@@ -13,6 +13,10 @@ class Admin::DailyMenuPolicy < ApplicationPolicy
     user_is_admin?
   end
 
+  def create?
+    user_is_admin?
+  end
+  
   def show?
     user_is_admin?
   end
@@ -22,7 +26,7 @@ class Admin::DailyMenuPolicy < ApplicationPolicy
   end
 
   def update?
-    user_is_admin?
+    user_is_admin? 
   end
 
   private
