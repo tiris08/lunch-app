@@ -13,9 +13,10 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import '@doabit/semantic-ui-sass'
+import '@doabit/semantic-ui-sass';
 import 'application/sweet-alert-confirm';
-import 'easy-autocomplete/dist/jquery.easy-autocomplete'
+import 'easy-autocomplete/dist/jquery.easy-autocomplete';
+import 'application/items';
 
 
 $(document).on('turbolinks:load', function() {

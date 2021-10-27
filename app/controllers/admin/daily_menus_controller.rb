@@ -12,6 +12,12 @@ class Admin::DailyMenusController < Admin::BaseController
   def new
     @daily_menu = DailyMenu.new
     @daily_menu.food_items.build
+    @q = FoodItem.ransack(name_cont: params[:q])
+    @food_items = @q.result.select(:name).distinct.limit(6)
+    respond_to do |f|
+      f.html
+      f.json { render json: @food_items }
+    end
   end
 
   def create
@@ -24,7 +30,14 @@ class Admin::DailyMenusController < Admin::BaseController
     end
   end
 
-  def edit; end
+  def edit
+    @q = FoodItem.ransack(name_cont: params[:q])
+    @food_items = @q.result.select(:name).distinct.limit(6)
+    respond_to do |f|
+      f.html
+      f.json { render json: @food_items }
+    end
+  end
 
   def update
     if @daily_menu.update(daily_menu_params)
