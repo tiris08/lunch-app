@@ -12,10 +12,4 @@ class Admin::UserPolicy < ApplicationPolicy
   def show?
     user_is_admin?
   end
-
-  private
-
-  def user_is_admin?
-    @user.is_admin?
-  end
 end

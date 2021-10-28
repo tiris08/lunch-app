@@ -6,6 +6,6 @@ class DailyMenuPolicy < ApplicationPolicy
   end
 
   def show?
-    !@user.is_admin?
+    user_is_not_admin?
   end
 end

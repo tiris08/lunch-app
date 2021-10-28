@@ -32,10 +32,4 @@ class OrderPolicy < ApplicationPolicy
   def destroy?
     user_is_not_admin?
   end
-
-  private
-
-  def user_is_not_admin?
-    !@user.is_admin?
-  end
 end
