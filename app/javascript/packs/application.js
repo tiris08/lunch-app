@@ -3,6 +3,7 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 require("@nathanvda/cocoon")
+
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
@@ -12,9 +13,11 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
-import '@doabit/semantic-ui-sass'
+import '@doabit/semantic-ui-sass';
 import 'application/sweet-alert-confirm';
+import 'easy-autocomplete/dist/jquery.easy-autocomplete';
+import 'application/items';
+
 
 $(document).on('turbolinks:load', function() {
   $('.ui.radio.checkbox').checkbox();

@@ -33,6 +33,7 @@ gem 'hamlit-rails'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'ransack'
 gem 'pundit'
 gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
