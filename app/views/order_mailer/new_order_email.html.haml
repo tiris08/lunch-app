@@ -1,8 +1,8 @@
 %h1
-  = "Hi #{@order.user.name}! You got a new order for today from Lunch app!"
+  = @order.confirmation_mail_title
 %h3 Order details: 
 - @order.food_items.each do |item|
   %ol
     %li{ style: 'font-size: 1.17em; font-weight: bold;' }  
-      = "#{item.name} (#{item.course.humanize}) - #{number_to_currency(item.price)}"
+      = item.info_mail
 %h3 Bon Appétit!
