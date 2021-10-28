@@ -74,6 +74,6 @@ class Admin::DailyMenusController < Admin::BaseController
   def check_if_todays_menu
     return if DailyMenu.find(params[:id]).created_at.today?
 
-    redirect_to root_path, alert: 'You are not allowed to perform this action'
+    redirect_to admin_root_path, alert: 'You are not allowed to perform this action'
   end
 end
