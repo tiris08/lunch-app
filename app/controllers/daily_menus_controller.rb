@@ -1,6 +1,5 @@
 class DailyMenusController < ApplicationController
-  before_action :verify_is_not_admin!
-  skip_before_action :authenticate_user!, except: [:show]
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :find_daily_menu, only: [:show]
   decorates_assigned :daily_menu
 
@@ -12,11 +11,7 @@ class DailyMenusController < ApplicationController
 
   private
 
-  def verify_is_not_admin!
-    redirect_to admin_root_path, alert: 'You don\'t belong there' if current_user&.is_admin?
-  end
-
   def find_daily_menu
-    @daily_menu = DailyMenu.find(params[:id])
+    @daily_menu = authorize DailyMenu.find(params[:id])
   end
 end
