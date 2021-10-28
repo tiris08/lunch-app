@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :verify_is_not_admin!
   before_action :find_order, only: %i[update destroy edit show]
+  before_action :check_policy
+  before_action :check_if_todays_menu, except: %i[index show]
 
   def new
     @order = Order.new
@@ -52,11 +53,17 @@ class OrdersController < ApplicationController
                                   order_items_attributes: %i[id food_item_id order_id _destroy])
   end
 
-  def verify_is_not_admin!
-    redirect_to admin_root_path, alert: "You don't belong there" if current_user&.is_admin?
-  end
-
   def find_order
     @order = Order.find(params[:id])
+  end
+
+  def check_policy
+    authorize(@order || Order)
+  end
+
+  def check_if_todays_menu
+    return if DailyMenu.find(params[:daily_menu_id]).created_at.today?
+
+    redirect_to root_path, alert: 'You are not allowed to perform this action'
   end
 end

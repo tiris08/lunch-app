@@ -1,5 +1,8 @@
 class Admin::DailyMenusController < Admin::BaseController
   before_action :find_daily_menu, only: %i[show edit update]
+  before_action :check_policy
+  before_action :check_todays_menu_presence, only: %i[new create]
+  before_action :check_if_todays_menu, only: %i[edit update]
 
   def index
     @facade = Admin::DailyMenus::IndexFacade.new(params)
@@ -56,5 +59,21 @@ class Admin::DailyMenusController < Admin::BaseController
 
   def find_daily_menu
     @daily_menu = DailyMenu.find(params[:id])
+  end
+
+  def check_policy
+    authorize(@daily_menu || DailyMenu)
+  end
+
+  def check_todays_menu_presence
+    return if DailyMenu.where(created_at: Time.zone.now.all_day).none?
+
+    redirect_to admin_root_path, alert: 'You are not allowed to perform this action'
+  end
+
+  def check_if_todays_menu
+    return if DailyMenu.find(params[:id]).created_at.today?
+
+    redirect_to root_path, alert: 'You are not allowed to perform this action'
   end
 end
