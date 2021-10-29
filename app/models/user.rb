@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   def self.from_token_payload(payload)
-    self.find payload["sub"]
+    find payload['sub']
   end
 
   def self.from_omniauth(access_token)

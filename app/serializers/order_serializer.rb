@@ -7,4 +7,3 @@ class OrderSerializer < ActiveModel::Serializer
     object.food_items&.pluck(:price)&.sum
   end
 end
- 

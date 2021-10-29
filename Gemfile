@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.8'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'active_model_serializers', '~> 0.10.2'
 gem 'cocoon'
 gem 'draper'
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
@@ -31,13 +32,13 @@ gem 'figaro'
 gem 'hamlit', '~> 2.15', '>= 2.15.1'
 gem 'hamlit-rails'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
+gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master',
+ref: '9214cd027422df8dc31eb67c60032fbbf8fc100b'
 gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-rails_csrf_protection'
-gem 'ransack'
 gem 'pundit'
+gem 'ransack'
 gem 'simple_form'
-gem 'active_model_serializers', '~> 0.10.2'
-gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master', ref: '9214cd027422df8dc31eb67c60032fbbf8fc100b'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

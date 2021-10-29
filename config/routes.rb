@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     post 'user_token' => 'user_token#create'
-    resources :orders, only: %i[index] 
+    resources :orders, only: %i[index]
   end
 
   devise_for :users,
