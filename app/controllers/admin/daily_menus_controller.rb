@@ -19,7 +19,7 @@ class Admin::DailyMenusController < Admin::BaseController
     @food_items = @q.result.select(:name).distinct.limit(6)
     respond_to do |f|
       f.html
-      f.json { render json: @food_items }
+      f.json { render json: @food_items, adapter: false }
     end
   end
 
@@ -38,7 +38,7 @@ class Admin::DailyMenusController < Admin::BaseController
     @food_items = @q.result.select(:name).distinct.limit(6)
     respond_to do |f|
       f.html
-      f.json { render json: @food_items }
+      f.json { render json: @food_items, adapter: false }
     end
   end
 
