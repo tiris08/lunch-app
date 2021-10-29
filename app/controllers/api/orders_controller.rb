@@ -1,4 +1,4 @@
-class Api::OrdersController < ApplicationController
+class Api::OrdersController < ApiController
   def index
     @orders = Order.where(created_at: Time.zone.now.all_day)
 
