@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
+      OrderMailer.with(order: @order).new_order_email.deliver_later
       redirect_to order_path(@order), notice: 'Your order was successfully created'
     else
       @facade = Orders::NewFacade.new(@order, params)

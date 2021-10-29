@@ -1,0 +1,8 @@
+%h1
+  = @order.confirmation_mail_title
+%h3 Order details: 
+- @order.food_items.each do |item|
+  %ol
+    %li{ style: 'font-size: 1.17em; font-weight: bold;' }  
+      = item.info_mail
+%h3 Bon Appétit!
