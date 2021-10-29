@@ -31,12 +31,13 @@ gem 'figaro'
 gem 'hamlit', '~> 2.15', '>= 2.15.1'
 gem 'hamlit-rails'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-rails_csrf_protection'
 gem 'ransack'
 gem 'pundit'
 gem 'simple_form'
-gem 'active_model_serializers', '~> 0.10.2' 
+gem 'active_model_serializers', '~> 0.10.2'
+gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master', ref: '9214cd027422df8dc31eb67c60032fbbf8fc100b'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
