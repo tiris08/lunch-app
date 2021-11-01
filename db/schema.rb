@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_130526) do
     t.bigint "food_item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "order_id", null: false
+    t.bigint "order_id", default: 1, null: false
     t.index ["food_item_id"], name: "index_order_items_on_food_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end

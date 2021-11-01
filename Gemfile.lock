@@ -395,8 +395,8 @@ DEPENDENCIES
   cocoon
   database_cleaner
   devise (~> 4.8)
-  factory_bot_rails
   draper
+  factory_bot_rails
   faker!
   figaro
   hamlit (~> 2.15, >= 2.15.1)
@@ -412,9 +412,9 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
   rails-controller-testing
+  ransack
   rexml (~> 3.2.4)
   rspec-rails (~> 5.0.0)
-  ransack
   rubocop (~> 1.22)
   rubocop-performance (~> 1.11)
   rubocop-rails (~> 2.12)
