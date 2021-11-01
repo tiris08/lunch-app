@@ -11,7 +11,7 @@ module Orders
     end
 
     def user_order_items
-      @user_order_items ||= order.food_items.decorate
+      @user_order_items ||= order.food_items
     end
   end
 end

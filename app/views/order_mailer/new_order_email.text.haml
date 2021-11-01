@@ -1,0 +1,7 @@
+= @order.confirmation_mail_title
+________________________________________________________________________
+Order details: 
+- @order.food_items.each do |item|
+  = item.info_mail
+  ________________________________________________________________________
+Bon Appétit!
