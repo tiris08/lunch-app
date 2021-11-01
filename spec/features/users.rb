@@ -116,7 +116,7 @@ RSpec.feature 'Users', type: :feature do
     end
 
     scenario 'can see list of registered users on the users page' do
-      visit root_path
+      visit admin_root_path
       click_link('Users')
       10.times do |i|
         page.assert_selector('td', text: users[i].name)
@@ -124,7 +124,7 @@ RSpec.feature 'Users', type: :feature do
     end
 
     scenario 'can see user`s profile on the user profile page' do
-      visit root_path
+      visit admin_root_path
       click_link('Users')
       click_link(users[0].name)
       page.assert_selector('.ui.header', text: 'User info')
@@ -133,7 +133,7 @@ RSpec.feature 'Users', type: :feature do
     end
 
     scenario 'can see weekdays on the home page' do
-      visit root_path
+      visit admin_root_path
       page.assert_selector('.ui.link.card', count: 2)
       expect(page).to have_content(menu1.created_at.strftime('%A'))
       expect(page).to have_content(menu2.created_at.strftime('%A'))
@@ -141,7 +141,7 @@ RSpec.feature 'Users', type: :feature do
 
     scenario 'can see the menu list day page', js: true do
       create(:food_item, daily_menu: menu1, name: 'Chicken')
-      visit root_path
+      visit admin_root_path
       find('.ui.link.card', match: :first).click_link('History')
       find('.item', text: 'Menu list').click
       page.assert_selector('.item.active', text: 'Menu list')
@@ -153,7 +153,7 @@ RSpec.feature 'Users', type: :feature do
       order = build(:order, daily_menu: menu1, user: users[0])
       order.order_items.build(food_item: chicken)
       order.save
-      visit root_path
+      visit admin_root_path
       find('.ui.link.card', match: :first).click_link('History')
       find('.item', text: 'Users orders').click
       page.assert_selector('.item.active', text: 'Users orders')
@@ -163,7 +163,7 @@ RSpec.feature 'Users', type: :feature do
 
     scenario 'can see statistics of the day on the day page' do
       create(:food_item, daily_menu: menu1, name: 'Chicken')
-      visit root_path
+      visit admin_root_path
       find('.ui.link.card', match: :first).click_link('History')
       page.assert_selector('th', text: 'Most popular menu items', visible: true)
       page.assert_selector('td', text: 'Chicken', visible: true)
