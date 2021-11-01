@@ -17,7 +17,7 @@
 #   if time.on_weekday? && !(time > Time.now)
 #     menu = DailyMenu.create(created_at: time,
 #                               food_items_attributes: { 
-                                                                # "0": { name: Faker::Food.dish,
+#                                                                 "0": { name: Faker::Food.dish,
 #                                                               price: Faker::Commerce.price(range: 5..10),
 #                                                               course: 0},
 #                                                         "1": { name: Faker::Food.dish,
@@ -44,17 +44,6 @@
 #                                                         "8": { name: drinks.sample,
 #                                                               price: Faker::Commerce.price(range: 5..10),
 #                                                               course: 2}})
-#     3.times do
-#       name = Faker::Food.dish
-#       price = Faker::Commerce.price(range: 5..10)
-#       menu.food_items.create(name: name, price: price, course: 0)
-#       name = Faker::Food.dish
-#       price = Faker::Commerce.price(range: 7..10)
-#       menu.food_items.create(name: name, price: price, course: 1)
-#       name = drinks.sample
-#       price = Faker::Commerce.price(range: 2..5)
-#       menu.food_items.create(name: name, price: price, course: 2)
-#     end
 #   end
 # end
 
@@ -70,10 +59,11 @@
 #     menu = DailyMenu.find(44 - n)
 #     order = Order.new(user_id: user.id, daily_menu_id: menu.id)
 #     3.times do |num|
-#       food_item = menu.food_items[num]
-#       order.order_items.build
-#       order.order_items[num].food_item_id = food_item.id
-#       order.save
+#       food_item = menu.food_items.where(course: num).first
+#       order_item = order.order_items.build
+#       order_item.food_item_id = food_item.id
+#       order_item.save
 #     end
+#     order.save
 #   end
 # end
