@@ -32,8 +32,6 @@ gem 'figaro'
 gem 'hamlit', '~> 2.15', '>= 2.15.1'
 gem 'hamlit-rails'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
-gem 'knock', git: 'https://github.com/nsarno/knock', branch: 'master',
-ref: '9214cd027422df8dc31eb67c60032fbbf8fc100b'
 gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-rails_csrf_protection'
 gem 'pundit'

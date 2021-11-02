@@ -5,13 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :orders, dependent: nil
-  alias_method :authenticate, :valid_password?
   before_create :set_admin
   validates :name, presence: true
-
-  def self.from_token_payload(payload)
-    find payload['sub']
-  end
 
   def self.from_omniauth(access_token)
     data = access_token.info

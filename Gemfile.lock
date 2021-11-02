@@ -23,17 +23,6 @@ GIT
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
 
-GIT
-  remote: https://github.com/nsarno/knock
-  revision: 9214cd027422df8dc31eb67c60032fbbf8fc100b
-  ref: 9214cd027422df8dc31eb67c60032fbbf8fc100b
-  branch: master
-  specs:
-    knock (2.2.0)
-      bcrypt (~> 3.1)
-      jwt (~> 2.2.1)
-      rails (>= 5)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -379,7 +368,6 @@ DEPENDENCIES
   hamlit-rails
   jbuilder (~> 2.7)
   kaminari!
-  knock!
   listen (~> 3.3)
   omniauth-google-oauth2 (~> 1.0)
   omniauth-rails_csrf_protection
