@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     resources :users, only: %i[index show]
   end
 
+  namespace :api do
+    resources :orders, only: %i[index]
+  end
+
   devise_for :users,
              controllers: { registrations:      'registrations',
                             omniauth_callbacks: 'omniauth_callbacks' }
