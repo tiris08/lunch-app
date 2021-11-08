@@ -54,7 +54,7 @@ class ApplicationPolicy
   private
 
   def user_is_not_admin?
-    !@user.is_admin?
+    !@user&.is_admin?
   end
 
   def user_is_admin?

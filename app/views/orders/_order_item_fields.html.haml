@@ -17,4 +17,5 @@
     .field
       = s.input :food_item_id, label: "Drink", input_html: { class: "ui selection dropdown" }, prompt: 'Select',
                               collection: @facade.food_items_collection("drink")
+    .ui.checkbox  
       = s.input :_destroy, as: :boolean, label: "Remove item"

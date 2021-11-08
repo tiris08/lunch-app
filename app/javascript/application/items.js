@@ -3,6 +3,7 @@ $(document).on('turbolinks:load', function() {
   const getjson = '.json?q='
   let options = {
     getValue: 'name',
+    adjustWidth: false,
     url: function(phrase) {
       return currentURL + getjson + phrase
     }
