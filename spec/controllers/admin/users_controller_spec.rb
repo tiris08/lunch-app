@@ -4,7 +4,7 @@ RSpec.describe Admin::UsersController, type: :controller do
   let!(:admin) { create(:user) }
   let(:user)   { create(:random_user) }
 
-  context 'unauthenticated user' do
+  context 'when user is unauthenticated' do
     
     describe 'GET /index' do
       it 'redirects to login' do
@@ -21,7 +21,7 @@ RSpec.describe Admin::UsersController, type: :controller do
     end
   end
 
-  context 'authorized user' do
+  context 'when user is authorized' do
     
     before { sign_in(user) }
 
@@ -40,7 +40,7 @@ RSpec.describe Admin::UsersController, type: :controller do
     end
   end
 
-  context 'authorized admin' do
+  context 'when user is authorized as an admin' do
     
     before { sign_in(admin) }
 

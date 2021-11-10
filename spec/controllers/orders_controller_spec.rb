@@ -76,7 +76,7 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  context 'authorized admin:user' do
+  context 'when user is authorized as an admin' do
     
     before do
       sign_in(admin)
@@ -136,7 +136,7 @@ RSpec.describe OrdersController, type: :controller do
     end
   end
 
-  context 'authorized user' do
+  context 'when user is authorized' do
 
     before { sign_in(user) }
 
