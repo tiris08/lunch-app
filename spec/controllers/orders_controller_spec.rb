@@ -244,6 +244,16 @@ RSpec.describe OrdersController, type: :controller do
           end.to change(Order, :count).by(1)
         end
 
+        it "sends email" do
+          ActiveJob::Base.queue_adapter = :inline
+          expect do
+            post :create, params: { daily_menu_id: daily_menu,
+                                    order:         { daily_menu_id:          daily_menu,
+                                                    user_id:                user,
+                                                    order_items_attributes: [valid_order_attr] } }
+          end.to change { ActionMailer::Base.deliveries.count }.by(1)
+        end
+        
         it 'throws succes notice message' do
           post :create, params: { daily_menu_id: daily_menu,
                                   order:         { daily_menu_id:          daily_menu,
@@ -301,7 +311,7 @@ RSpec.describe OrdersController, type: :controller do
         let(:delete_first_attr) { order.order_items.first.attributes.merge!(_destroy: true) }
         let(:delete_main_attr) { order.order_items.second.attributes.merge!(_destroy: true) }
         let(:delete_drink_attr) { order.order_items.third.attributes.merge!(_destroy: true) }
-       
+        
         it 'renders :edit template' do
           patch :update, params: { daily_menu_id: daily_menu, id: order, user_id: user,
                                    order: { order_items_attributes: [delete_first_attr, 
