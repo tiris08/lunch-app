@@ -27,7 +27,7 @@ class DailyMenuDecorator < ApplicationDecorator
       make_order_or_history_link(daily_menu)
     else
       h.content_tag(:button, 'History', class: 'ui bottom attached button',
-'data-tooltip' => 'You have to sign in first')
+                                               'data-tooltip' => 'You have to sign in first')
     end
   end
 
