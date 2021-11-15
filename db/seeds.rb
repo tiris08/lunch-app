@@ -53,9 +53,9 @@ end
   User.create(name: name, email: email, password: "password", password_confirmation: "password")
 end
 
-15.times do |number|
-  number += 2
-  user = User.find(number)
+15.times do |n|
+  id = User.last.id - n
+  user = User.find(id)
   10.times do |n|
     menu = DailyMenu.find(DailyMenu.last.id - n)
     order = Order.new(user_id: user.id, daily_menu_id: menu.id)

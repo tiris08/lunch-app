@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Admin::DailyMenus::ShowFacade, type: :facade do
-
-  before(:all) { load "#{Rails.root}/db/seeds.rb"}
-
+  
+  before(:context)  { Rails.application.load_seed }
+  after(:context)   { DatabaseCleaner.clean_with :truncation}
   let(:facade)      { Admin::DailyMenus::ShowFacade.new(daily_menu) }
   let(:daily_menu)  { DailyMenu.last }
   
   
   describe "#decorated_daily_menu" do
+    
     it "returns decorated daily_menu" do
       expect(facade.decorated_daily_menu).to be_a(DailyMenuDecorator)
       expect(facade.decorated_daily_menu).to eq(daily_menu)
