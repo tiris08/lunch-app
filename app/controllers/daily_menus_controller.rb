@@ -5,7 +5,7 @@ class DailyMenusController < ApplicationController
   before_action :check_policy
 
   def index
-    @facade = DailyMenus::IndexFacade.new(params)
+    @facade = DailyMenus::IndexFacade.new(params, current_user)
   end
 
   def show; end

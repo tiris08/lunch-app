@@ -12,7 +12,7 @@
                 = menu.formatted_created_at
                 %br/
                 %br/
-            = menu.active_unactive_menu_link
+            = @facade.active_unactive_menu_link(menu)
       .one.column.row
         .celled.center.aligned.column
           = paginate @facade.paginated_daily_menus, views_prefix: 'daily_menus', window: 0
