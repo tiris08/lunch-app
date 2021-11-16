@@ -43,3 +43,5 @@ yarn-debug.log*
 /config/application.yml
 
 /config/credentials/development.key
+
+/config/credentials/test.key
