@@ -2,7 +2,7 @@ module Helpers
   module RequestToken
     require 'uri'
     require 'net/http'
-    
+
     def request_token
       url = URI("https://#{Rails.application.credentials.auth0[:domain]}/oauth/token")
 
@@ -11,11 +11,11 @@ module Helpers
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Post.new(url)
-      request["content-type"] = 'application/json'
-      request.body = "{\"client_id\":\"#{Rails.application.credentials.auth0[:client_id]}\",\
-                      \"client_secret\":\"#{Rails.application.credentials.auth0[:client_secret]}\",\
-                      \"audience\":\"#{Rails.application.credentials.auth0[:api_identifier]}\",\
-                      \"grant_type\":\"client_credentials\"}"
+      request['content-type'] = 'application/json'
+      request.body = %({\"client_id\":\"#{Rails.application.credentials.auth0[:client_id]}\",
+                      \"client_secret\":\"#{Rails.application.credentials.auth0[:client_secret]}\",
+                      \"audience\":\"#{Rails.application.credentials.auth0[:api_identifier]}\",
+                      \"grant_type\":\"client_credentials\"})
 
       response = http.request(request)
       JSON.parse(response.body)['access_token']

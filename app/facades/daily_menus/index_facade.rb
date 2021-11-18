@@ -2,7 +2,7 @@ module DailyMenus
   class IndexFacade
     include ActionView::Helpers
     include Rails.application.routes.url_helpers
-    
+
     attr_reader :params, :current_user
 
     def initialize(params, current_user)
@@ -22,13 +22,13 @@ module DailyMenus
                                                  'data-tooltip' => 'You have to sign in first')
       end
     end
-    
-    private 
+
+    private
 
     def make_order_or_history_link(menu)
       if menu.created_at.today? && current_user.orders.find_by(daily_menu: menu).nil?
         link_to 'Make an order', new_daily_menu_order_path(menu),
-                  class: 'ui bottom attached blue button'
+                class: 'ui bottom attached blue button'
       else
         link_to 'History', daily_menu_path(menu), class: 'ui bottom attached button'
       end

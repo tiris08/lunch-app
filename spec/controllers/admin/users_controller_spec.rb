@@ -5,7 +5,6 @@ RSpec.describe Admin::UsersController, type: :controller do
   let(:user)   { create(:random_user) }
 
   context 'when user is unauthenticated' do
-    
     describe 'GET /index' do
       it 'redirects to login' do
         get :index
@@ -22,7 +21,6 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   context 'when user is authorized' do
-    
     before { sign_in(user) }
 
     describe 'GET /index' do
@@ -41,7 +39,6 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   context 'when user is authorized as an admin' do
-    
     before { sign_in(admin) }
 
     describe 'GET /index' do
@@ -50,7 +47,7 @@ RSpec.describe Admin::UsersController, type: :controller do
         expect(response).to render_template(:index)
       end
 
-      it "assigns @facade" do
+      it 'assigns @facade' do
         get :index
         expect(assigns(:facade)).to be_a(Admin::Users::IndexFacade)
       end

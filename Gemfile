@@ -34,10 +34,9 @@ gem 'hamlit-rails'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
 gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-rails_csrf_protection'
-gem 'rexml', '~> 3.2.4'
-gem 'ransack'
 gem 'pundit'
 gem 'ransack'
+gem 'rexml', '~> 3.2.4'
 gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -69,12 +68,12 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'database_cleaner'
+  gem 'email_spec'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'webdrivers'
-  gem 'email_spec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

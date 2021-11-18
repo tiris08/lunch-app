@@ -1,6 +1,5 @@
 require 'rails_helper'
 RSpec.describe DailyMenusController do
-  
   let(:food_items_attributes) { attributes_for_list(:food_item, 3) }
   let(:daily_menu) { create(:daily_menu, food_items_attributes: food_items_attributes) }
   let(:user) { create(:user) }
