@@ -36,6 +36,7 @@ gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-rails_csrf_protection'
 gem 'pundit'
 gem 'ransack'
+gem 'rexml', '~> 3.2.4'
 gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -43,6 +44,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 5.0.0'
 end
 
 group :development do
@@ -65,6 +67,12 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
   gem 'webdrivers'
 end
 
