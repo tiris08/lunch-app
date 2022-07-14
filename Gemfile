@@ -39,6 +39,8 @@ gem 'ransack'
 gem 'rexml', '~> 3.2.4'
 gem 'simple_form'
 gem 'font-awesome-sass'
+gem 'sidekiq'
+gem 'awesome_print'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

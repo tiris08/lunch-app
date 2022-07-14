@@ -35,5 +35,7 @@ module LunchApp
       g.test_framework :rspec
       g.integration_tool :rspec
     end
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
