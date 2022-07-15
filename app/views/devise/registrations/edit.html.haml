@@ -1,7 +1,7 @@
 .ui.middle.aligned.center.aligned.grid 
   .column  
     %h2.ui.blue.icon.header
-      %i.user.icon
+      %i.fas.fa-user.fa-4x
       .content  
         Edit User
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), 
@@ -13,7 +13,7 @@
         .field
           = f.input :email
         .field
-          = f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+          = f.input :password, hint: ("#{ @minimum_password_length } characters minimum" if @minimum_password_length)
         .field
           = f.input :password_confirmation
         .field 
@@ -23,7 +23,7 @@
     .ui.bottom.attached.message
       %h3 Cancel my account
       %p Unhappy? 
-      = link_to "Cancel my account", registration_path(resource_name), 
-                                    data: { confirm_swal: 'Are you sure?' }, 
-                                    method: :delete, 
+      = link_to "Cancel my account", registration_path(resource_name),
+                                    data: { confirm_swal: 'Are you sure?' },
+                                    method: :delete,
                                     class: 'ui negative basic button'
