@@ -1,6 +1,6 @@
 # Lunch app
 
-This app is a service that will provide an easy way to order lunch for staff of any organization
+This app is a service that will provide an easy way to order a lunch for staff of any organization
 
 Lunch app will be using next tools:
 
