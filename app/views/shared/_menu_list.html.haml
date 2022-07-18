@@ -9,6 +9,7 @@
           Menu items
           = menu.admin_edit_link
         %th Price
+        %th Image
     %tbody
       - menu.sorted_by_course_items.each do |item|
         %tr
@@ -19,4 +20,5 @@
                 = item.humanized_course
           %td
             = item.price
-            
+          %td
+            = image_tag item.image if item.image.attached?

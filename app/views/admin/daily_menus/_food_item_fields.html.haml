@@ -10,4 +10,6 @@
                                           collection: [['First', "first_course"], 
                                                        ['Main', "main_course"], 
                                                        ['Drink', "drink"]]
+    .field
+      = f.file_field :image
     = link_to_remove_association "Remove item", f, class: "ui fluid button"
