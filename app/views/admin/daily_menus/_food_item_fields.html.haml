@@ -1,15 +1,15 @@
-.nested-fields.column  
+.nested-fields.column
   .ui.segment
     .field
       = f.input :name, input_html: {'data-behavior': "autocomplete"}
     .field
       = f.input :price
     .inline.fields
-      = f.input :course, required: false, input_html: {class: "ui radio checkbox"}, 
-                                          as: :radio_buttons, 
-                                          collection: [['First', "first_course"], 
-                                                       ['Main', "main_course"], 
+      = f.input :course, required: false, input_html: {class: "ui radio checkbox"},
+                                          as: :radio_buttons,
+                                          collection: [['First', "first_course"],
+                                                       ['Main', "main_course"],
                                                        ['Drink', "drink"]]
     .field
-      = f.file_field :image
+      = f.file_field :image, accept: "image/jpeg,image/gif,image/png"
     = link_to_remove_association "Remove item", f, class: "ui fluid button"
