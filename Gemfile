@@ -40,6 +40,10 @@ gem 'rexml', '~> 3.2.4'
 gem 'simple_form'
 gem 'font-awesome-sass'
 gem 'sidekiq'
+gem 'active_storage_validations', '~> 0.1'
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
+gem 'mini_magick', '~> 4.11'
+gem 'aws-sdk-s3', '~> 1.114', require: false
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
