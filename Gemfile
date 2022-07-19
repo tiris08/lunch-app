@@ -3,27 +3,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
-# Use sqlite3 as the database for Active Record
 gem 'pg'
-# Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.8'
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'cocoon'
 gem 'draper'
@@ -44,11 +31,9 @@ gem 'active_storage_validations', '~> 0.1'
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
 gem 'mini_magick', '~> 4.11'
 gem 'aws-sdk-s3', '~> 1.114', require: false
-# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
   gem 'pry-rails'
@@ -67,13 +52,12 @@ group :development do
   gem 'rubocop-performance', '~> 1.11', require: false
   gem 'rubocop-rails', '~> 2.12', require: false
   gem 'spring'
+  gem 'letter_opener'
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_bot_rails'
