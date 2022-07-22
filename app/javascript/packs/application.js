@@ -13,23 +13,11 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import '@doabit/semantic-ui-sass';
-import 'application/sweet-alert-confirm';
-import 'easy-autocomplete/dist/jquery.easy-autocomplete';
-import 'application/items';
-
-
-$(document).on('turbolinks:load', function() {
-  $('.ui.radio.checkbox').checkbox();
-  $('.tabular.menu .item').tab();
-  $('.message .close').on('click', function() {
-    $(this).closest('.message').transition('fade');
-  });
-  
-  $('select.dropdown')
-  .dropdown()
-})
-
+import '@doabit/semantic-ui-sass'
+import 'application/sweet-alert-confirm'
+import 'easy-autocomplete/dist/jquery.easy-autocomplete'
+import 'application/items'
+import 'application/semantic'
 
 // if you wan't to use custom variables, you should import custom styelesheet
 // import 'stylesheets/semantic-ui.scss'

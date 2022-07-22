@@ -1,4 +1,4 @@
-$(() => {
+$(document).on('turbolinks:load', () => {
   let currentURL = window.location.pathname
   const getjson = '.json?q='
   let options = {
@@ -10,7 +10,7 @@ $(() => {
   }
   $("[data-behavior='autocomplete']").easyAutocomplete(options)
   
-  $('.ui.three.column.grid').on('cocoon:after-insert', function() {
+  $('.ui.three.column.grid').on('cocoon:after-insert', () => {
     $("[data-behavior='autocomplete']").easyAutocomplete(options)
   })
 })
