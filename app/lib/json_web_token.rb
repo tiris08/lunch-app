@@ -15,9 +15,14 @@ class JsonWebToken
   end
 
   def self.jwks_hash
-    jwks_raw = Net::HTTP.get URI("https://#{Rails.application
-                                                  .credentials
-                                                  .auth0[:domain]}/.well-known/jwks.json")
+    if Rails.env.test? && defined?(VCR)
+      jwks_raw = VCR.use_cassette('auth0_jwks') do
+        Net::HTTP.get URI("https://#{Rails.application.credentials.auth0[:domain]}/.well-known/jwks.json")
+      end
+    else
+      jwks_raw = Net::HTTP.get URI("https://#{Rails.application.credentials.auth0[:domain]}/.well-known/jwks.json")
+    end
+
     jwks_keys = Array(JSON.parse(jwks_raw)['keys'])
     jwks_keys
       .map do |k|
