@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://dev-qd0g1ngp.us.auth0.com/oauth/token
+    body:
+      encoding: UTF-8
+      string: |-
+        {"client_id":"client_id",
+                                "client_secret":"client_secret",
+                                "audience":"https://lunch-app.com",
+                                "grant_type":"client_credentials"}
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev-qd0g1ngp.us.auth0.com
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 02 Jul 2025 23:31:34 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 9591effb4c168905-YVR
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - no-store
+      Set-Cookie:
+      - did=s%3Av0%3A5c02718c-268b-487b-8684-623cbf803b85.se4YSxnX7XTB38xyzv4lCYmwlXHAEi7QOKwzojPcglw;
+        Path=/; Expires=Fri, 03 Jul 2026 05:31:34 GMT; HttpOnly; Secure; SameSite=None
+      - did_compat=s%3Av0%3A5c02718c-268b-487b-8684-623cbf803b85.se4YSxnX7XTB38xyzv4lCYmwlXHAEi7QOKwzojPcglw;
+        Path=/; Expires=Fri, 03 Jul 2026 05:31:34 GMT; HttpOnly; Secure
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - Accept-Encoding, Origin
+      Pragma:
+      - no-cache
+      X-Auth0-L:
+      - '0.148'
+      X-Auth0-Requestid:
+      - 596c23b5cb815774f6f5
+      X-Content-Type-Options:
+      - nosniff
+      X-Ratelimit-Limit:
+      - '300'
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Reset:
+      - '1751499155'
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InY0dmR6VzJlQXRVY3B2Wk9uLUJPaSJ9.eyJpc3MiOiJodHRwczovL2Rldi1xZDBnMW5ncC51cy5hdXRoMC5jb20vIiwic3ViIjoiRUN3bG8wTVZEV1hwOG1vcWJpSmMwN2JtZEdOZUhZTklAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vbHVuY2gtYXBwLmNvbSIsImlhdCI6MTc1MTQ5OTA5NCwiZXhwIjoxNzUxNTg1NDk0LCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMiLCJhenAiOiJFQ3dsbzBNVkRXWHA4bW9xYmlKYzA3Ym1kR05lSFlOSSJ9.ePHDcMViSjJKUT8vJ3V33Hmzrh1a1Q2xSq6zpfiyYLLmaAJVQvFWrldG_n5e3vBrFZbBp34Vllk2g7WjV9kA-ixOqPFYAnqM39BCpYZz38YcclNNx-wuxZ4a9QGM9yb8ZKNyPZowFvRU6m0kryWDJlZzaQiDQRTCZ5YVYouvmLG940Bj-kLhjlYcUwpqRMnJ7Fnv2iplSKkx8Kn4N5SGIqBozmwJXXgYrrPXIvg1yu0YyrXlnzzXsCBMKdDLtFB0StNZmRG-mxgOxR0xTnfXjQpQNz3xEcH4r8tQWOnRhpzrs9UTIQA74WAXIembGIjKhICzfZc7VtXt_XSY0mJaUg","expires_in":86400,"token_type":"Bearer"}'
+  recorded_at: Wed, 02 Jul 2025 23:31:34 GMT
+recorded_with: VCR 6.3.1

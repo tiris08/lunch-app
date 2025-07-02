@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://dev-qd0g1ngp.us.auth0.com/.well-known/jwks.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - dev-qd0g1ngp.us.auth0.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 01 Jul 2025 23:30:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 9589b1bfee311480-YVR
+      Cf-Cache-Status:
+      - EXPIRED
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - public, max-age=15, stale-while-revalidate=15, stale-if-error=86400
+      Last-Modified:
+      - Tue, 01 Jul 2025 23:30:59 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - Accept-Encoding, Origin, Accept-Encoding
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Access-Control-Expose-Headers:
+      - X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After
+      X-Auth0-L:
+      - '0.027'
+      X-Auth0-Requestid:
+      - f08afa49a08b9b3a9972
+      X-Cache-Status:
+      - BYPASS
+      X-Content-Type-Options:
+      - nosniff
+      X-Ratelimit-Limit:
+      - '300'
+      X-Ratelimit-Remaining:
+      - '299'
+      X-Ratelimit-Reset:
+      - '1751412720'
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"keys":[{"kty":"RSA","use":"sig","n":"qVPW1IF10ubdvyVKiT4qdfQsEkv_fG4uky615EKJIWPX59nv4_cSBhRhdwlFsPcCtjdegyL7gmu97Sn0Re_YM4EoZwvL9AuNfJXRVeWgdsoyoJd97qNNh3FxNdU3Ods5nDIhWAMNLb5RYSk8Rw3u7mfeA0Zy56cciNjfeeDZSrNX6ZrIJv-PU9ayB7Nc8VVCiGrTZ4DgV9pacTsngVBCG76BBKb83r_VqU1tjFsxrhbmVchkZxoyRgTAsBMHC4bdmDCAMPzEuUs8Of7yGJlNbr_Q0EhGRUKALe8MmPh0hgMn5BxZ5ooMf8ZXDkusrBSbyHU16YUt1xcL0XxVz6joUQ","e":"AQAB","kid":"v4vdzW2eAtUcpvZOn-BOi","x5t":"XA1c-FkuTiWED4K4EXN5Wd9L7b8","x5c":["MIIDDTCCAfWgAwIBAgIJJxSJ9R1A28N2MA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNVBAMTGWRldi1xZDBnMW5ncC51cy5hdXRoMC5jb20wHhcNMjExMTE1MTUzNTE5WhcNMzUwNzI1MTUzNTE5WjAkMSIwIAYDVQQDExlkZXYtcWQwZzFuZ3AudXMuYXV0aDAuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqVPW1IF10ubdvyVKiT4qdfQsEkv/fG4uky615EKJIWPX59nv4/cSBhRhdwlFsPcCtjdegyL7gmu97Sn0Re/YM4EoZwvL9AuNfJXRVeWgdsoyoJd97qNNh3FxNdU3Ods5nDIhWAMNLb5RYSk8Rw3u7mfeA0Zy56cciNjfeeDZSrNX6ZrIJv+PU9ayB7Nc8VVCiGrTZ4DgV9pacTsngVBCG76BBKb83r/VqU1tjFsxrhbmVchkZxoyRgTAsBMHC4bdmDCAMPzEuUs8Of7yGJlNbr/Q0EhGRUKALe8MmPh0hgMn5BxZ5ooMf8ZXDkusrBSbyHU16YUt1xcL0XxVz6joUQIDAQABo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBST925n6tbjvbKzluWlI4zuzd4VsDAOBgNVHQ8BAf8EBAMCAoQwDQYJKoZIhvcNAQELBQADggEBADOhOB1Ctj1WcJqIeYLladWnH102kQCJOZTtBtPT2ucI7VO7fyBMMGE1YugrvnF1179zML3XgTjVGQCUcy9473LyBqSnswttD3xieuItQWiwpDLxaxXKQL8c2HWG3ktvXqUrnoJ6N2KS3AeJJKlcMYzqiW1cigyodfmFu8igSjskXmxIDVHjIxH+4o/rv9mb4JGTAqsbpEOTgFbmT4AFNFbBHHVQVfLcu8psS/RKvIQUTAsZCiaIFuGco25ziV5TEk6MhaBnbBJpghpd5CEv76I/Hfm/YqgX6JuS4yovpsr8GJ9gN4PHu16YC32WiujDG6KxN56a4dQEwniLtSVBD4s="],"alg":"RS256"},{"kty":"RSA","use":"sig","n":"tTaZ9fyvEGD4jsJ5sAVqa7U5x8j3LsS7eQwrzETiyOGcTCDbW5HPA5mis3KjMXQDxOA7dMIWUk76_EGli7HT_NbYWYlKWvF3e-Lwz4-nfIn5iqCdswb7_vMQP_pO6-wpQdpL-Om_G-AiRrZ5-YbjmvB8ciILEhaZC44cbh05x04X1AYltN4GzqEmpx5Dd-DKH8jUYAZayTPAk7Uge6yKgt45cDuqlWfpW4nAbi10Y8xPQ8QCMFriTi9ywF55ExZdsk-hwX2fDtU4bPjD8ugAGh-EQ0dw68gumd-V8OCclvDiLNPYH7XXMwoyl_MlsBq8SllAJHnhz3SCSW1SMqsNaQ","e":"AQAB","kid":"uvuWGfRujhmRG0oW3U15X","x5t":"7TKz39Zs0t8TjTuIMM53iBt8_FA","x5c":["MIIDDTCCAfWgAwIBAgIJAU0v1Gg7O6w/MA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNVBAMTGWRldi1xZDBnMW5ncC51cy5hdXRoMC5jb20wHhcNMjExMTE1MTUzNTIwWhcNMzUwNzI1MTUzNTIwWjAkMSIwIAYDVQQDExlkZXYtcWQwZzFuZ3AudXMuYXV0aDAuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtTaZ9fyvEGD4jsJ5sAVqa7U5x8j3LsS7eQwrzETiyOGcTCDbW5HPA5mis3KjMXQDxOA7dMIWUk76/EGli7HT/NbYWYlKWvF3e+Lwz4+nfIn5iqCdswb7/vMQP/pO6+wpQdpL+Om/G+AiRrZ5+YbjmvB8ciILEhaZC44cbh05x04X1AYltN4GzqEmpx5Dd+DKH8jUYAZayTPAk7Uge6yKgt45cDuqlWfpW4nAbi10Y8xPQ8QCMFriTi9ywF55ExZdsk+hwX2fDtU4bPjD8ugAGh+EQ0dw68gumd+V8OCclvDiLNPYH7XXMwoyl/MlsBq8SllAJHnhz3SCSW1SMqsNaQIDAQABo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBQEbAHVtbbtVVFpP9rBizviciCvjTAOBgNVHQ8BAf8EBAMCAoQwDQYJKoZIhvcNAQELBQADggEBAEXawo+UXvpCJKhX57q4+ChxXa5SFEYhVA2OtWRqeY5y/TLfmsv+DXpOnGeW8S7ms8WX3emChH3FiYmKNt5F9iyETJFs434PYtjMJGIRLjLygAgTdvixjH5XgHl9tn2gT+A1s0jAoe/Hu6rjQMlbkMnSAoi3sacphhVrqdUu9Hrc3hiFkAwQqVqMNRSGbxcEgbTTFwVMCHRNVUNlhj22E1SQ2PA7UsrZMjfRGqOUq+lIUSsmYjXsGX2le3CslobBv17KqFj5+tS+lGHfe0hOcaA3RGzEWSATgnW1G9StK/Ow4c0OQnC15kiCMohNwo50d3kveoGWEI8R6DoRdGbPmfA="],"alg":"RS256"}]}'
+  recorded_at: Tue, 01 Jul 2025 23:30:59 GMT
+recorded_with: VCR 6.3.1
